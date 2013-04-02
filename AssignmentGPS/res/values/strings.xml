@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AssignmentGPS</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="error">Error:</string>
+    
+    <string name="selection">Choose location mode:</string>
+    <string name="network">Network</string>
+    <string name="network_wifi">Network+Wifi</string>
+	<string name="gps">GPS</string>
+	<string name="start">Start</string>
+	<string name="stop">Stop</string>
+	<string name="currentLocation">Current location:</string>
+	<string name="noLocation">No location available</string>
+</resources>

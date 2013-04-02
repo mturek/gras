@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AssignmentNetwork</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="startDownload">Start download</string>
+    <string name="message">Enter message:</string>
+    <string name="hint">2G/3G/WiFi</string>
+    <string name="logMessage">Message:</string>
+    <string name="logMessageText">No message available</string>
+
+</resources>
