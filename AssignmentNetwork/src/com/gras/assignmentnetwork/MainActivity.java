@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -44,6 +45,9 @@ public class MainActivity extends Activity {
 	public void startDownload(View view) {
 		//Context context = getApplicationContext();
 		String text = "";
+		
+		EditText message = (EditText) findViewById(R.id.messageInput); 
+		logText("\n" + message.getText().toString() + "\n");
 
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -62,32 +66,56 @@ public class MainActivity extends Activity {
 		messageDisplay.setText(text);
 	}
 
+	private String logText(String text)
+	{
+		Context context = getApplicationContext();
+		try {
+			File file = new File(context.getExternalFilesDir(null),
+					"networking_log.txt");
+			FileWriter fileWriter = new FileWriter(file, true);
+			BufferedWriter out = new BufferedWriter(fileWriter);
+			out.write(text);
+			out.close();
+		} catch (IOException e) {
+			text = "Error saving file";
+		}		
+		
+		return text;
+	}
+	
 	private class DownloadFile extends AsyncTask<String, Integer, String> {
 		@Override
 		protected String doInBackground(String... sUrl) {
 			try {
 				Context context = getApplicationContext();
 				URL url = new URL(sUrl[0]);
+				
+				long beforeConnection = SystemClock.uptimeMillis();
 				URLConnection connection = url.openConnection();
 				connection.connect();
-
+				long afterConnection = SystemClock.uptimeMillis();
+				
+				String latencyMessage = "Download started\nLatency: " + (int)(afterConnection - beforeConnection);
+				logText(latencyMessage + "\n");
+				
 				int fileLength = connection.getContentLength();
 
 				InputStream input = new BufferedInputStream(url.openStream());
 				OutputStream output = new FileOutputStream(new File(
 						context.getExternalFilesDir(null), "file.pdf"));
 
-				byte data[] = new byte[128];
+				byte data[] = new byte[64];
 				long total = 0;
 				int logged = 0;
 				int count;
 				
+				long beforeTime = SystemClock.uptimeMillis();
 				long startTime = SystemClock.uptimeMillis();
 				while ((count = input.read(data)) != -1) {
 					total += count;
 
 					long currentTime = SystemClock.uptimeMillis();
-					if((currentTime - startTime) > 1*1000)
+					if((currentTime - startTime) > 500)
 					{
 						int durationInMS = (int) (currentTime - startTime);
 						int throughPut = (int) (1000*(total-logged)/durationInMS);
@@ -95,11 +123,20 @@ public class MainActivity extends Activity {
 						startTime = currentTime;
 						logged=(int)total;
 					} else {
-						//publishProgress(count,(int)(currentTime-startTime),0, 0);
+						//publishProgress(count,(int)(currentTime-startTime),(int) currentTime, 0);
 					}
 					output.write(data, 0, count);
 				}
 
+				
+				long finalTime = SystemClock.uptimeMillis();
+				String text = "Download complete\n";
+				text += "Total bytes downloaded: " + total + "\n";
+				text += "Total time: " + (finalTime - beforeTime) + "\n";
+				text += "Avg. throughput: " + 1000*total/(finalTime - beforeTime) + "\n\n";
+				
+				logText(text);
+				
 				output.flush();
 				output.close();
 				input.close();
@@ -117,12 +154,12 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onProgressUpdate(Integer... progress) {
 			super.onProgressUpdate(progress);
-			Context context = getApplicationContext();
-			String text = "Duration: " + progress[0] + " Bytes: " + progress[1] + 
-					" Percent: " + progress[2] + "Throughput: " + progress [3] + "\n"; 
+			//Context context = getApplicationContext();
+			String text = "Duration: " + progress[0] + " Total bytes: " + progress[1] + 
+					" Percent: " + progress[2] + "Throughput for last block: " + progress [3] + "\n"; 
 			
 			// External storage:
-			try {
+			/*try {
 				File file = new File(context.getExternalFilesDir(null),
 						"networking_log.txt");
 				FileWriter fileWriter = new FileWriter(file, true);
@@ -131,7 +168,9 @@ public class MainActivity extends Activity {
 				out.close();
 			} catch (IOException e) {
 				text = "Error saving file";
-			}
+			}*/
+			
+			logText(text);
 			
 			((TextView) findViewById(R.id.logMessageText)).setText(text);
 			mProgress.setProgress(progress[2]);
