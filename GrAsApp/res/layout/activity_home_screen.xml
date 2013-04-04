@@ -9,13 +9,7 @@
     This title strip will display the currently visible page title, as well as the page
     titles for adjacent pages.
     -->
-	 <fragment
-        android:id="@+id/listFragment"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        class="com.gras.grasapp" ></fragment>
+	
 	 
     <android.support.v4.view.PagerTitleStrip
         android:id="@+id/pager_title_strip"
