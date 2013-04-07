@@ -25,12 +25,21 @@
         android:text="@string/tasksTitle"
         android:textSize="12sp" /> -->
 
+	<View
+	android:id="@+id/horizontalbar"
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:layout_below="@id/calendarview"
+    android:background="@android:color/darker_gray"/>
+
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.gras.calendartest.TaskFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/calendarview"
+        android:layout_below="@id/horizontalbar"
         android:paddingTop="10dp" />
 
 </RelativeLayout>
