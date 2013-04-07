@@ -1,6 +1,6 @@
-package com.gras.listtest2;
+package com.gras.calendartest;
 
-import android.app.ListActivity;
+import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,16 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends ListActivity {
-	 
-	static final String[] VALUES = new String[] { "Trash", "Trash", "Dishes", "Reyburn" };
-	
+public class TaskFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
- 
-		// no more this
-		// setContentView(R.layout.list_fruit);
 		
 		Task[] values = new Task[12];
 		values[0] = new Task("Dishes", "29/04 20:00", "No. 6");
@@ -36,68 +30,68 @@ public class MainActivity extends ListActivity {
 		values[9] = new Task("Trash", "30/04 15:30", "No. 6");
 		values[10] = new Task("Trash", "30/04 15:30", "No. 6");
 		values[11] = new Task("Trash", "30/04 15:30", "No. 6");
-		
-		
-		
-		setListAdapter(new MobileArrayAdapter(this, values));
-		
-		
-		/*ListView listView = getListView();
-		listView.setTextFilterEnabled(true);
- 
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-			    Toast.makeText(getApplicationContext(),
-				((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-			}
-		});*/
- 
+
+		setListAdapter(new MobileArrayAdapter(this.getActivity(), values));
+
 	}
 	
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
- 
-		//get selected items
-		String selectedValue = ((Task) getListAdapter().getItem(position)).getName();
-		Toast.makeText(this, selectedValue, Toast.LENGTH_SHORT).show();
- 
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// Inflate the layout for this fragment
+
+		
+		return inflater.inflate(R.layout.task_fragment, container, false);
 	}
-	
-	
-	
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		
+		// get selected items
+		String selectedValue = ((Task) getListAdapter().getItem(position))
+				.getName();
+		Toast.makeText(this.getActivity(), selectedValue, Toast.LENGTH_SHORT).show();
+
+	}
+
 	private class MobileArrayAdapter extends ArrayAdapter<Task> {
 		private final Context context;
 		private final Task[] values;
-	 
+
 		public MobileArrayAdapter(Context context, Task[] values) {
 			super(context, R.layout.listviewlayout, values);
 			this.context = context;
 			this.values = values;
 		}
-	 
+
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	 
-			View rowView = inflater.inflate(R.layout.listviewlayout, parent, false);
-			TextView taskNameView = (TextView) rowView.findViewById(R.id.taskName);
-			TextView taskTimeView = (TextView) rowView.findViewById(R.id.taskTime);
-			TextView taskGroupView = (TextView) rowView.findViewById(R.id.taskGroup);
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+			View rowView = inflater.inflate(R.layout.listviewlayout, parent,
+					false);
+			TextView taskNameView = (TextView) rowView
+					.findViewById(R.id.taskName);
+			TextView taskTimeView = (TextView) rowView
+					.findViewById(R.id.taskTime);
+			TextView taskGroupView = (TextView) rowView
+					.findViewById(R.id.taskGroup);
 			ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
 			taskNameView.setText(values[position].getName());
 			taskTimeView.setText(values[position].getTime());
 			taskGroupView.setText(values[position].getGroup());
-			
-			/*Typeface tf = Typeface.defaultFromStyle(Typeface.ITALIC);
-			taskTimeView.setTypeface(tf);*/
-			
+
+			/*
+			 * Typeface tf = Typeface.defaultFromStyle(Typeface.ITALIC);
+			 * taskTimeView.setTypeface(tf);
+			 */
+
 			// Change icon based on name
 			String s = values[position].getName();
-	 
+
 			System.out.println(s);
-	 
+
 			if (s.equals("Trash")) {
 				imageView.setImageResource(R.drawable.trash2);
 			} else if (s.equals("Dishes")) {
@@ -105,9 +99,8 @@ public class MainActivity extends ListActivity {
 			} else {
 				imageView.setImageResource(R.drawable.ic_launcher);
 			}
-	 
+
 			return rowView;
 		}
 	}
- 
 }
