@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NewSpinProj</string>
+    <string name="app_name">GrasApp</string>
     <string name="action_settings">Settings</string>
     <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section2">Tasks</string>
+    <string name="title_section3">Calendar</string>
       <string name="title_section4">No6</string>
     <string name="title_section5">789</string>
     <string name="title_section6">SH</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="alttext_dishes">Dishes picture</string>
+	<string name="defaultTaskName">Task name</string>
+    <string name="defaultTaskTime">Task time</string>
+    <string name="defaultTaskGroup">Group</string>
+    <string name="tasksTitle">Tasks:</string>
 
 </resources>

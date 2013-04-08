@@ -2,6 +2,7 @@ package com.example.newspinproj;
 
 import java.util.Locale;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -47,7 +48,7 @@ public class TabFragment extends Fragment {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) getView().findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-
+		
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,14 +69,10 @@ public class TabFragment extends Fragment {
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
+			if (position==2)
+			return new CalendarFragment();
+			else
+				return new Fragment();
 		}
 
 		@Override
