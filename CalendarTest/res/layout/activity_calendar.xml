@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="0dp"
+    tools:context=".CalendarActivity" >
+
+    <!-- android:paddingTop="@dimen/activity_vertical_margin" -->
+
+    <CalendarView
+        android:id="@+id/calendarview"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:minHeight="200dp"
+        android:minWidth="150dp" />
+
+    <!-- <TextView
+        android:id="@+id/tasksTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarview"
+        android:text="@string/tasksTitle"
+        android:textSize="12sp" /> -->
+
+	<View
+	android:id="@+id/horizontalbar"
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:layout_below="@id/calendarview"
+    android:background="@android:color/darker_gray"/>
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.gras.calendartest.TaskFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/horizontalbar"
+        android:paddingTop="10dp" />
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TaskAssignmentTest</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="labelTask">Task</string>
+    <string name="labelDate">Time</string>
+    <string name="labelPeople">People</string>
+    <string name="buttonCreate">Create</string>
+
+</resources>
