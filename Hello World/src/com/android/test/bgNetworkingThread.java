@@ -1,6 +1,9 @@
 package com.android.test;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -25,7 +28,18 @@ class bgNetworkingThread extends AsyncTask<String, Integer, String>{
 	        HttpGet request = new HttpGet();
 	        request.setURI(new URI(req));
 	        response = client.execute(request);
-	        return response.toString();
+	        InputStream inp= response.getEntity().getContent();
+	        InputStreamReader inputStreamReader = new InputStreamReader(inp);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String bufferedStrChunk = null;
+            while((bufferedStrChunk = bufferedReader.readLine()) != null){
+                stringBuilder.append(bufferedStrChunk);
+            }
+            
+	        System.out.println(stringBuilder.toString());
+	        return stringBuilder.toString();
+	        
 	    } catch (URISyntaxException e) {
 	        e.printStackTrace();
 	    } catch (ClientProtocolException e) {
