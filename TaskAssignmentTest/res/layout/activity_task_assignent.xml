@@ -27,10 +27,33 @@
             android:id="@+id/taskPrototypes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">            
-        </LinearLayout>
+            android:orientation="horizontal">    
+            <!--  radio buttons -->        
+        </LinearLayout>   
     </HorizontalScrollView>
+    
+    <TextView
+        android:id="@+id/labelDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelDate" 
+        android:layout_below="@id/taskPrototypesView"
+        />
 
-   
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/labelDate" 
+        android:layout_toLeftOf="@+id/timePicker"/>
+
+    <TimePicker
+        android:id="@id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/labelDate"
+        android:layout_toRightOf="@id/datePicker" />
 
 </RelativeLayout>
