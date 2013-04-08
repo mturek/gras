@@ -2,7 +2,6 @@ package com.example.newspinproj;
 
 import java.util.Locale;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -43,7 +42,7 @@ public class TabFragment extends Fragment {
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
-				getChildFragmentManager());
+				getChildFragmentManager()); //getChildFragmentManager()
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) getView().findViewById(R.id.pager);
@@ -70,7 +69,7 @@ public class TabFragment extends Fragment {
 		@Override
 		public Fragment getItem(int position) {
 			if (position==2)
-			return new CalendarFragment();
+				return new CalendarFragment();
 			else
 				return new Fragment();
 		}
