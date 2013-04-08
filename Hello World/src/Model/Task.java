@@ -17,7 +17,7 @@ public class Task {
 	Leader lead2;
 	
 	String[] fields = {"protoid", "date", "time", "user1", "user2", "lead1", "lead2"};
-	ArrayList<String>values;
+	ArrayList<String>values = new ArrayList<String>();
 	public Task(Integer protoid,Date date,Time time,User user1,User user2,Leader lead1,Leader lead2){
 		this.values.add( protoid.toString());
 		this.values.add( date.toString());
@@ -39,19 +39,19 @@ public class Task {
 	
 	public Task(Integer protoid, User user1, Leader lead1) {
 		this.values.add( protoid.toString());
-		this.values.add( null);
-		this.values.add( null);
+		this.values.add( "");
+		this.values.add( "");
 		this.values.add( user1.toString());
-		this.values.add(null);
+		this.values.add("");
 		this.values.add( lead1.toString());
-		this.values.add( null);
+		this.values.add( "");
 		this.protoid = protoid;
 		this.lead1 = lead1;
 		this.user1 = user1;
 	}
 
 	public ArrayList<String> getfields(){
-		ArrayList<String> fields = null;
+		ArrayList<String> fields = new ArrayList<String>();
 		for( String f : this.fields){
 			fields.add(f);
 		}

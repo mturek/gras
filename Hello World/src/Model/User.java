@@ -18,4 +18,8 @@ public class User {
 	public int getuuid(){
 		return uuid;
 	}
+	
+	public String toString(){
+		return this.name;
+	}
 }

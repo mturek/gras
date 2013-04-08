@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 
 	public  void changeText(){
 		Task newTask = new Task(3, new User("Niki", 3), new Leader("michael", 4) );
-		HttpInterface.sendreq("http://nedmonds.scripts.mit.edu/parsereq.php?command=newUser&uname=Niki&fname=cool");
+		newTask.SendToServer();
 		text.setText("did something");
 	}
 

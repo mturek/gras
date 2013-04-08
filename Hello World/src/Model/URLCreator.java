@@ -12,6 +12,7 @@ public class URLCreator implements ServerRequestVisitor {
 	
 	@Override
 	public String onNewTask(NewTaskReq newtaskreq) {
+	
 		String req =  rootURL + "command=newTask" + generateURLpart(newtaskreq.fields, newtaskreq.values);
 		HttpInterface.sendreq(req);
 		return req;
@@ -20,7 +21,11 @@ public class URLCreator implements ServerRequestVisitor {
 	public static String generateURLpart(ArrayList<String> fields, ArrayList<String> values){
 		String ret = "";
 		for(int i = 0; i < fields.size(); i++){
-			ret = ret + "&" + fields.get(i) + values.get(i);
+			if(values.get(i).equals("")){
+			}
+			else{
+				ret = ret + "&" + fields.get(i) + "=" + values.get(i);
+			}
 		}
 		return ret;
 	}
