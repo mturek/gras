@@ -15,7 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.os.AsyncTask;
 
-class bgNetworkingThread extends AsyncTask<String, Integer, String>{
+public class bgNetworkingThread extends AsyncTask<String, Integer, String>{
 
 	@Override
 	protected String doInBackground(String... params) {
@@ -43,10 +43,9 @@ class bgNetworkingThread extends AsyncTask<String, Integer, String>{
 	    } catch (URISyntaxException e) {
 	        e.printStackTrace();
 	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
+	        
 	        e.printStackTrace();
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
 	        e.printStackTrace();
 	    }   
 		return "failure";

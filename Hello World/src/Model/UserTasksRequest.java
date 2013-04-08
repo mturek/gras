@@ -25,4 +25,10 @@ public class UserTasksRequest implements ServerRequest{
 		return values;
 	}
 
+	@Override
+	public String send() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

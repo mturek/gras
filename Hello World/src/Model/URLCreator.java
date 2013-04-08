@@ -10,13 +10,6 @@ public class URLCreator implements ServerRequestVisitor {
 	String rootURL = "http://nedmonds.scripts.mit.edu/parsereq.php?";
 
 	
-	@Override
-	public String onNewTask(NewTaskReq newtaskreq) {
-	
-		String req =  rootURL + "command=newTask" + generateURLpart(newtaskreq.fields, newtaskreq.values);
-		HttpInterface.sendreq(req);
-		return req;
-	}
 
 	public static String generateURLpart(ArrayList<String> fields, ArrayList<String> values){
 		String ret = "";
@@ -30,6 +23,16 @@ public class URLCreator implements ServerRequestVisitor {
 		return ret;
 	}
 
+	
+
+	@Override
+	public String onNewTask(NewTaskReq newtaskreq) {
+	
+		String req =  rootURL + "command=newTask" + generateURLpart(newtaskreq.fields, newtaskreq.values);
+		HttpInterface.sendreq(req);
+		return req;
+	}
+	
 	@Override
 	public String onUserTasksRequest(UserTasksRequest u) {
 		String req = rootURL + "command=getUserTasks" + generateURLpart(u.getfields(), u.getvalues());
@@ -39,26 +42,30 @@ public class URLCreator implements ServerRequestVisitor {
 
 	@Override
 	public String onNewUser(NewUserReq ur) {
-		// TODO Auto-generated method stub
-		return null;
+		String req = rootURL + "command=newUser" + generateURLpart(ur.getfields(), ur.getValues());
+		HttpInterface.sendreq(req);
+		return req;
 	}
 
 	@Override
 	public String onUserFromNewNameReq(UserFromUnameReq ufnn) {
-		// TODO Auto-generated method stub
-		return null;
+		String req = rootURL + "command=userfromuname" + generateURLpart(ufnn.getfields(), ufnn.getValues());
+		HttpInterface.sendreq(req);
+		return req;
 	}
 
 	@Override
 	public String onTaskFromIDReq(TaskFromIDRequest tfid) {
-		// TODO Auto-generated method stub
-		return null;
+		String req = rootURL + "command=taskfromID" + generateURLpart(tfid.getfields(), tfid.getValues());
+		HttpInterface.sendreq(req);
+		return req;
 	}
 
 	@Override
 	public String onUsersInGroupReq(UsersInGroupReq uig) {
-		// TODO Auto-generated method stub
-		return null;
+		String req = rootURL + "command=usersingroup" + generateURLpart(uig.getfields(), uig.getValues());
+		HttpInterface.sendreq(req);
+		return req;
 	}
 	
 

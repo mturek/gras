@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 	}
 
 	public  void changeText(){
-		Task newTask = new Task(3, new User("Niki", 3), new Leader("michael", 4) );
+		Task newTask = new Task(3, new User("Niki", "dkf", "dsf", 3), new Leader("michael") );
 		newTask.SendToServer();
 		text.setText("did something");
 	}
