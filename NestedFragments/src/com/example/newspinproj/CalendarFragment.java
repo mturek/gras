@@ -45,6 +45,23 @@ public class CalendarFragment extends Fragment {
 		getActivity().getMenuInflater().inflate(R.menu.calendar, menu);
 		return true;
 	}
-
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		System.out.println("Calendar paused");
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		System.out.println("Calendar stopped");
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		System.out.println("Calendar resumed");
+	}
 }
 

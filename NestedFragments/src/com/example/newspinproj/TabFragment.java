@@ -25,6 +25,8 @@ public class TabFragment extends Fragment {
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
 
+	
+	
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
@@ -48,6 +50,7 @@ public class TabFragment extends Fragment {
 		mViewPager = (ViewPager) getView().findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
+		
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,17 +64,34 @@ public class TabFragment extends Fragment {
 	 * one of the sections/tabs/pages.
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
+		Fragment calendarFragment;
+		Fragment tab0;
+		Fragment tab1;
+		
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
+			
+			calendarFragment = new Fragment();
+			tab0 = new CalendarFragment();
+			tab1 = new Fragment();
 		}
 
 		@Override
 		public Fragment getItem(int position) {
-			if (position==2)
-				return new CalendarFragment();
-			else
+			if (position == 0) {
+				return tab0;
+			}
+			else if (position == 1) {
+				return tab1;
+			}
+			else if (position == 2) {
+				calendarFragment.onResume();
+				return calendarFragment;
+			}
+			else {
 				return new Fragment();
+			}
+				
 		}
 
 		@Override

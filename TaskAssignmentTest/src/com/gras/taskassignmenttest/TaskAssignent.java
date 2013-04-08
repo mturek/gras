@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TimePicker;
 
 public class TaskAssignent extends Activity {
 	
@@ -15,6 +17,8 @@ public class TaskAssignent extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_task_assignent);
 		
+		/*TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+		timePicker.setIs24HourView(true);*/
 		
 		final LinearLayout layout = (LinearLayout) findViewById(R.id.taskPrototypes);
 		
@@ -32,6 +36,9 @@ public class TaskAssignent extends Activity {
 		        states.addState(new int[] {-android.R.attr.state_checked},getApplicationContext().getResources().getDrawable(R.drawable.trash2));
 		        states.addState(new int[] {android.R.attr.state_checked},getApplicationContext().getResources().getDrawable(R.drawable.trash2_selected));
 		        rb[i].setButtonDrawable(states);
+		        
+		      //  rb[i].setWidth(50);
+		       // rb[i].setHeight(50);
 		        
 		        rg.addView(rb[i]); //the RadioButtons are added to the radioGroup instead of the layout
 		        rb[i].setText("Test");
