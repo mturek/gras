@@ -37,6 +37,10 @@ public class Task {
 		this.lead2 = lead2;
 	}
 	
+	public Task(String allInfoFromServer){
+		
+	}
+	
 	public Task(Integer protoid, User user1, Leader lead1) {
 		this.values.add( protoid.toString());
 		this.values.add( "");

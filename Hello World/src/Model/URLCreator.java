@@ -36,6 +36,30 @@ public class URLCreator implements ServerRequestVisitor {
 		HttpInterface.sendreq(req);
 		return req;
 	}
+
+	@Override
+	public String onNewUser(NewUserReq ur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String onUserFromNewNameReq(UserFromUnameReq ufnn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String onTaskFromIDReq(TaskFromIDRequest tfid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String onUsersInGroupReq(UsersInGroupReq uig) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 	
