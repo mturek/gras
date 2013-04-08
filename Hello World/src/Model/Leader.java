@@ -10,4 +10,7 @@ public class Leader {
 		this.uuid = uuid;
 	}
 
+	public String toString(){
+		return this.name;
+	}
 }
