@@ -1,7 +1,8 @@
 package com.android.test;
 
 
-import Model.Leader;
+import Model.Group;
+
 import Model.Task;
 import Model.User;
 import android.app.Activity;
@@ -42,7 +43,7 @@ public class MainActivity extends Activity {
 	}
 
 	public  void changeText(){
-		Task newTask = new Task(3, new User("Niki", "dkf", "dsf", 3), new Leader("michael") );
+		Task newTask = new Task(3, null, null, new User("Niki", "dkf", "dsf", 3), null, new Group());
 		newTask.SendToServer();
 		text.setText("did something");
 	}
