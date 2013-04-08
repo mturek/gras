@@ -29,6 +29,13 @@ public class URLCreator implements ServerRequestVisitor {
 		}
 		return ret;
 	}
+
+	@Override
+	public String onUserTasksRequest(UserTasksRequest u) {
+		String req = rootURL + "command=getUserTasks" + generateURLpart(u.getfields(), u.getvalues());
+		HttpInterface.sendreq(req);
+		return req;
+	}
 	
 
 	

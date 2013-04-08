@@ -36,6 +36,10 @@ public class MainActivity extends Activity {
 		
   	  });
     }
+	
+	public void pullTasks(){
+		
+	}
 
 	public  void changeText(){
 		Task newTask = new Task(3, new User("Niki", 3), new Leader("michael", 4) );
