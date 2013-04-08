@@ -2,6 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
+import com.android.test.HttpInterface;
+
 public class UserTasksRequest implements ServerRequest{
 
 	ArrayList<String> fields = new ArrayList<String>();
@@ -27,8 +29,10 @@ public class UserTasksRequest implements ServerRequest{
 
 	@Override
 	public String send() {
-		// TODO Auto-generated method stub
-		return null;
+		URLCreator urler = new URLCreator();
+		String res = urler.onUserTasksRequest(this);
+		return HttpInterface.sendreq(res);
+		
 	}
 
 }

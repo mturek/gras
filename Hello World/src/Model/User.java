@@ -58,4 +58,9 @@ public class User {
 		NewUserReq nur = new NewUserReq(this);
 		return nur.send();
 	}
+	
+	public String getTasks(){
+		UserTasksRequest utr = new UserTasksRequest(this.uname);
+		return utr.send();
+	}
 }

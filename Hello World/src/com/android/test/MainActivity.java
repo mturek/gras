@@ -43,9 +43,10 @@ public class MainActivity extends Activity {
 	}
 
 	public  void changeText(){
-		Task newTask = new Task(3, null, null, new User("Niki", "dkf", "dsf", 3), null, new Group());
-		newTask.SendToServer();
-		text.setText("did something");
+		User u = new User("Niki", "mary", "sally", 234);
+		String res = u.getTasks();
+		System.out.println(res);
+		text.setText(res);
 	}
 
     @Override

@@ -13,6 +13,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import Model.DataContainer;
 import android.os.AsyncTask;
 
 public class bgNetworkingThread extends AsyncTask<String, Integer, String>{
@@ -37,7 +38,9 @@ public class bgNetworkingThread extends AsyncTask<String, Integer, String>{
                 stringBuilder.append(bufferedStrChunk);
             }
             
-	        System.out.println(stringBuilder.toString());
+            String stuff = stringBuilder.toString();
+	        System.out.println(stuff);
+	        DataContainer.recieveTaskList(stuff);
 	        return stringBuilder.toString();
 	        
 	    } catch (URISyntaxException e) {

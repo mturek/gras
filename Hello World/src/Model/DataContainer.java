@@ -2,26 +2,34 @@ package Model;
 
 import java.util.ArrayList;
 
-public class DataContainer {
+public  class DataContainer {
 
-	ArrayList<User> users = new ArrayList<User>();
-	ArrayList<TaskProto> taskprotos = new ArrayList<TaskProto>();
-	ArrayList<Task> tasks = new ArrayList<Task>();
+	static ArrayList<User> users = new ArrayList<User>();
+	static ArrayList<TaskProto> taskprotos = new ArrayList<TaskProto>();
+	static ArrayList<Task> tasks = new ArrayList<Task>();
 	
 	public DataContainer(){
 		
 	}
 	
+	public static void recieveTaskList(String tl){
+		String[] parts = tl.split("newtask");
+		System.out.println(parts[0]);
+	}
 	
-	public void addUser(User u){
+	public static void recieveUserList(String ul){
+		
+	}
+	
+	public static void addUser(User u){
 		users.add(u);
 	}
 	
-	public void addTaskProto(TaskProto tp){
+	public static void addTaskProto(TaskProto tp){
 		taskprotos.add(tp);
 	}
 	
-	public void addTask(Task t){
+	public static void addTask(Task t){
 		tasks.add(t);
 	}
 }
