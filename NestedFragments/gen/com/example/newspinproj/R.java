@@ -30,28 +30,25 @@ public final class R {
         public static final int pet=0x7f020006;
         public static final int plants=0x7f020007;
         public static final int trash=0x7f020008;
-        public static final int trash2=0x7f020009;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
+        public static final int action_settings=0x7f08000e;
         public static final int calendarview=0x7f080000;
-        public static final int contactImage=0x7f080006;
-        public static final int contactName=0x7f080007;
-        public static final int contactNumber=0x7f080008;
-        public static final int contactlist=0x7f080003;
-        public static final int container=0x7f080005;
+        public static final int contactImage=0x7f080004;
+        public static final int contactName=0x7f080005;
+        public static final int contactNumber=0x7f080006;
+        public static final int container=0x7f080003;
         public static final int horizontalbar=0x7f080001;
-        public static final int logo=0x7f08000a;
-        public static final int menu_add=0x7f080012;
-        public static final int menu_refresh=0x7f080011;
-        public static final int pager=0x7f08000e;
-        public static final int pager_title_strip=0x7f08000f;
-        public static final int phoneBookEmptyView=0x7f080004;
-        public static final int section_label=0x7f080009;
+        public static final int logo=0x7f080008;
+        public static final int menu_add=0x7f080010;
+        public static final int menu_refresh=0x7f08000f;
+        public static final int pager=0x7f08000c;
+        public static final int pager_title_strip=0x7f08000d;
+        public static final int section_label=0x7f080007;
         public static final int taskFragment=0x7f080002;
-        public static final int taskGroup=0x7f08000d;
-        public static final int taskName=0x7f08000b;
-        public static final int taskTime=0x7f08000c;
+        public static final int taskGroup=0x7f08000b;
+        public static final int taskName=0x7f080009;
+        public static final int taskTime=0x7f08000a;
     }
     public static final class layout {
         public static final int activity_calendar=0x7f030000;

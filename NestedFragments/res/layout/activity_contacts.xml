@@ -9,14 +9,22 @@
     tools:context=".ContactsFragment" >
 
     <ListView
-        android:id="@+id/contactlist"
+        android:id="@+id/android:list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fadingEdge="vertical"
         android:fastScrollEnabled="true" >
     </ListView>
+    
+    <!-- <ListView
+        android:id="@+id/contactlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadingEdge="vertical"
+        android:fastScrollEnabled="true" >
+    </ListView> -->
 
-    <TextView
+    <!-- <TextView
         android:id="@+id/phoneBookEmptyView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +32,6 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/emptylist"
         android:layout_marginTop="5dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" /> -->
 
 </RelativeLayout>

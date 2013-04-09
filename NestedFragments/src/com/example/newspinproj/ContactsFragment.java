@@ -2,23 +2,23 @@ package com.example.newspinproj;
 
 import java.io.InputStream;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.ListFragment;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ContactsFragment extends Fragment {
+public class ContactsFragment extends ListFragment {
 	private View view = null;
 	public static final String[] members = {"Niki Edmonds", "Alexander Mitkas", "Alvaro Morales",
 			"Yoana Gyurova", "Android" };
@@ -51,10 +51,11 @@ public class ContactsFragment extends Fragment {
 				null, sortOrder);
 
 		setListAdapter(new ContactListAdapter(this.getActivity(), cursor));
+		//setListAdapter(new ContactListAdapter(this, cursor));
 		// cursor.close() - before destroying
 	}
 
-	protected void onListItemClick(ListView l, View v, int position, long id) {
+	public void onListItemClick(ListView l, View v, int position, long id) {
 
 		// get selected items
 		// String selectedValue = ((Task) getListAdapter().getItem(position))
@@ -81,6 +82,18 @@ public class ContactsFragment extends Fragment {
 			view = inflater.inflate(R.layout.activity_contacts, container, false);
 		
 		return view;
+	}
+	
+	@Override
+	public void onDestroyView() {
+		//super.onDestroyView();
+		ViewGroup parentViewGroup = (ViewGroup) view.getParent();
+		if (null != parentViewGroup) {
+			parentViewGroup.removeView(view);
+			//view=null;
+		}
+		
+		super.onDestroyView();
 	}
 
 	private class ContactListAdapter extends CursorAdapter {

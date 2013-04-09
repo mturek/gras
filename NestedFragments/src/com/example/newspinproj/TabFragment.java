@@ -54,6 +54,7 @@ public class TabFragment extends Fragment {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) getView().findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		mViewPager.setCurrentItem(1);
 		
 		
 	}
@@ -87,20 +88,20 @@ public class TabFragment extends Fragment {
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 		CalendarFragment calendarFragment;
 		TaskFragment taskFragment;
-		Fragment tab0;
+		ContactsFragment contactsFragment;
 		
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
 			
 			calendarFragment = new CalendarFragment();
 			taskFragment = new TaskFragment();
-			tab0 = new Fragment();
+			contactsFragment = new ContactsFragment();
 		}
 
 		@Override
 		public Fragment getItem(int position) {
 			if (position == 0) {
-				return new Fragment();
+				return contactsFragment;
 			}
 			else if (position == 1) {
 				return taskFragment; //taskFragment;

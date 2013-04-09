@@ -1,10 +1,6 @@
 package com.android.test;
 
-
-import Model.Group;
-
 import Model.DataContainer;
-import Model.Task;
 import Model.User;
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,51 +9,52 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    private Button closeButton;
-    static TextView text;
-
+	private Button closeButton;
+	static TextView text;
 
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        MainActivity.text = (TextView) this.findViewById(R.id.textshit);
-        MainActivity.text.setText("Hello 21W.789!");
-        this.closeButton = (Button)this.findViewById(R.id.goodbye);
-        DataContainer data = new DataContainer();
-   
-  	  	this.closeButton.setOnClickListener(new OnClickListener() {
-  	    
-	  	    public void onClick(View v) {
-	  	      changeText();
-	  	    }
-	  	   
-		
-		
-  	  });
-    }
-	
-	public void pullTasks(){
-		
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		MainActivity.text = (TextView) this.findViewById(R.id.textshit);
+		MainActivity.text.setText("Hello 21W.789!");
+		this.closeButton = (Button) this.findViewById(R.id.goodbye);
+		final DataContainer data = new DataContainer();
+
+		this.closeButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				changeText();
+
+				@SuppressWarnings("static-access")
+				String text = ""+data.getTasks().size();
+				Toast.makeText(getApplicationContext(), text,
+						Toast.LENGTH_SHORT).show();
+			}
+
+		});
 	}
 
-	public  void changeText(){
+	public void pullTasks() {
+
+	}
+
+	public void changeText() {
 		User u = new User("Niki", "mary", "sally", 234);
 		String res = u.getTasks();
 		System.out.println(res);
 		text.setText(res);
 	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
-    
 }
