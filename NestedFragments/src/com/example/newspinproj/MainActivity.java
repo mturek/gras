@@ -1,11 +1,10 @@
 package com.example.newspinproj;
 
 import android.annotation.TargetApi;
-
 import android.app.ActionBar;
-import android.os.Bundle;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -23,11 +22,16 @@ public class MainActivity extends FragmentActivity implements
 	 * current dropdown position.
 	 */
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
+	private TabFragment tabFragment = new TabFragment();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		tabFragment = new TabFragment();
+		getSupportFragmentManager().beginTransaction()
+				.add(R.id.container, tabFragment).commit();
 
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
@@ -44,6 +48,7 @@ public class MainActivity extends FragmentActivity implements
 								getString(R.string.title_section5),
 								getString(R.string.title_section6), }), this);
 	}
+
 
 	/**
 	 * Backward-compatible version of {@link ActionBar#getThemedContext()} that
@@ -84,14 +89,17 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public boolean onNavigationItemSelected(int position, long id) {
-		// When the given dropdown item is selected, show its contents in the
-		// container view.
-		TabFragment fragment = new TabFragment();
-		Bundle args = new Bundle();
-		args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-		fragment.setArguments(args);
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.container, fragment).commit();
+		/*
+		 * // When the given dropdown item is selected, show its contents in the
+		 * // container view. TabFragment fragment = new TabFragment(); Bundle
+		 * args = new Bundle();
+		 * args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+		 * fragment.setArguments(args);
+		 * getSupportFragmentManager().beginTransaction()
+		 * .replace(R.id.container, fragment).commit(); return true;
+		 */
+
+		tabFragment.changeData("Current group: " + position);
 		return true;
 	}
 
@@ -118,6 +126,7 @@ public class MainActivity extends FragmentActivity implements
 					.findViewById(R.id.section_label);
 			dummyTextView.setText(Integer.toString(getArguments().getInt(
 					ARG_SECTION_NUMBER)));
+
 			return rootView;
 		}
 	}

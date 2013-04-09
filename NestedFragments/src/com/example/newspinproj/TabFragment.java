@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TabFragment extends Fragment {
 
@@ -25,7 +26,7 @@ public class TabFragment extends Fragment {
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
 
-	
+	private View view = null;
 	
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -35,12 +36,16 @@ public class TabFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		      Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.main_fragment, container, false);
+		//if (true || view == null) 
+		if (view == null)
+			view = inflater.inflate(R.layout.main_fragment, container, false);
+		
+		return view;
 	}
 	@Override
 	public void onStart() {
 		super.onStart();
-
+				
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
@@ -58,35 +63,50 @@ public class TabFragment extends Fragment {
 		getActivity().getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	@Override
+	public void onDestroyView() {
+		//super.onDestroyView();
+		ViewGroup parentViewGroup = (ViewGroup) view.getParent();
+		if (null != parentViewGroup) {
+			parentViewGroup.removeView(view);
+			// view=null;
+		}
+		
+		super.onDestroyView();
+	}
+	
+	public void changeData(String data) {
+		Toast.makeText(this.getActivity(), data, Toast.LENGTH_SHORT).show();		
+	}
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-		Fragment calendarFragment;
+		CalendarFragment calendarFragment;
+		TaskFragment taskFragment;
 		Fragment tab0;
-		Fragment tab1;
 		
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
 			
-			calendarFragment = new Fragment();
-			tab0 = new CalendarFragment();
-			tab1 = new Fragment();
+			calendarFragment = new CalendarFragment();
+			taskFragment = new TaskFragment();
+			tab0 = new Fragment();
 		}
 
 		@Override
 		public Fragment getItem(int position) {
 			if (position == 0) {
-				return tab0;
+				return new Fragment();
 			}
 			else if (position == 1) {
-				return tab1;
+				return taskFragment; //taskFragment;
 			}
 			else if (position == 2) {
-				calendarFragment.onResume();
-				return calendarFragment;
+				return calendarFragment; //calendarFragment;
 			}
 			else {
 				return new Fragment();

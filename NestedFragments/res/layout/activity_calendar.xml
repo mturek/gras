@@ -36,11 +36,11 @@
 	
 	<fragment
         android:id="@+id/taskFragment"
+        android:tag="task_fragment_tag"
         android:name="com.example.newspinproj.TaskFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/horizontalbar"
         android:paddingTop="10dp" />
-
 
 </RelativeLayout>
