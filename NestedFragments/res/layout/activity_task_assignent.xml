@@ -7,41 +7,36 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TaskAssignent" >
-    
+
     <TextView
         android:id="@+id/labelGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
         android:text="@string/labelGroup" />
-    
-     <LinearLayout
-            android:id="@+id/sp"
-            android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelGroup"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/spin"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/labelGroup"
-            android:orientation="horizontal" >
-            
-         <Spinner
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content" 
-		android:id="@+id/spin"
-		android:entries="@array/groups_array"
-		/>
+            android:entries="@array/groups_array" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-       
     <TextView
         android:id="@+id/labelTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/sp"
         android:text="@string/labelTask" />
-    
-   
-    
 
     <HorizontalScrollView
         android:id="@+id/taskPrototypesView"
@@ -66,34 +61,34 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/taskPrototypesView"
         android:text="@string/labelDate" />
-    
-   
-    
+
     <LinearLayout
         android:id="@+id/timeDate"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/labelDate"
         android:orientation="horizontal"
         android:padding="0dp" >
 
-         <Button 
-	    android:layout_width="wrap_content" 
-	    android:layout_height="wrap_content"
-	    android:text="@string/pick_time" 
-	    android:onClick="showTimePickerDialog"
-	    android:id="@+id/timepick" />
-    
-    	<Button 
-	    android:layout_width="wrap_content" 
-	    android:layout_height="wrap_content"
-	    android:text="@string/pick_date" 
-	    android:onClick="showDatePickerDialog"
-	    android:id="@+id/datepick"  />
-            />
-    </LinearLayout> 
+        <Button
+            android:id="@+id/datepick"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:onClick="showDatePickerDialog"
+            android:text="@string/pick_date" />
 
- <!-- <EditText
+        <Button
+            android:id="@+id/timepick"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:onClick="showTimePickerDialog"
+            android:text="@string/pick_time" />
+    </LinearLayout>
+
+    <!--
+    <EditText
         android:id="@+id/editDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,16 +97,20 @@
         android:inputType="date" >
 
         <requestFocus />
-    </EditText> -->
+    </EditText>
+    -->
 
-    <!--  <EditText
+
+    <!--
+          <EditText
         android:id="@+id/editTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:layout_below="@id/labelDate"
 		android:layout_toRightOf="@id/editDate"
         android:ems="10"
-        android:inputType="time" /> -->
+        android:inputType="time" />
+    -->
 
     <TextView
         android:id="@+id/labelPeople"
@@ -119,21 +118,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/timeDate"
         android:text="@string/labelPeople" />
-    
-    
 
     <LinearLayout
         android:id="@+id/taskPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-        
-        
 
         <!-- people badges -->
     </LinearLayout>
-    
-    
 
     <Button
         android:id="@+id/buttonCreate"
@@ -142,9 +135,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="@string/buttonCreate" />
-    
-    
 
-   
-    
 </RelativeLayout>

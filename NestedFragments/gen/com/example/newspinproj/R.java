@@ -25,16 +25,21 @@ public final class R {
     }
     public static final class drawable {
         public static final int cleanup=0x7f020000;
-        public static final int custom=0x7f020001;
-        public static final int dishes=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int ic_menu_add=0x7f020004;
-        public static final int ic_menu_refresh=0x7f020005;
-        public static final int pet=0x7f020006;
-        public static final int plants=0x7f020007;
-        public static final int trash=0x7f020008;
-        public static final int trash2=0x7f020009;
-        public static final int trash2_selected=0x7f02000a;
+        public static final int cleanup_selected=0x7f020001;
+        public static final int custom=0x7f020002;
+        public static final int custom_selected=0x7f020003;
+        public static final int dishes=0x7f020004;
+        public static final int dishes_selected=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int ic_menu_add=0x7f020007;
+        public static final int ic_menu_refresh=0x7f020008;
+        public static final int pet=0x7f020009;
+        public static final int pet_selected=0x7f02000a;
+        public static final int plants=0x7f02000b;
+        public static final int plants_selected=0x7f02000c;
+        public static final int trash=0x7f02000d;
+        public static final int trash2_selected=0x7f02000e;
+        public static final int trash_selected=0x7f02000f;
     }
     public static final class id {
         public static final int Due=0x7f09001e;
@@ -46,7 +51,7 @@ public final class R {
         public static final int contactName=0x7f090012;
         public static final int contactNumber=0x7f090013;
         public static final int container=0x7f090003;
-        public static final int datepick=0x7f09000d;
+        public static final int datepick=0x7f09000c;
         public static final int description=0x7f09001d;
         public static final int dumdum=0x7f090014;
         public static final int horizontalbar=0x7f090001;
@@ -73,7 +78,7 @@ public final class R {
         public static final int taskPrototypesView=0x7f090008;
         public static final int taskTime=0x7f090018;
         public static final int timeDate=0x7f09000b;
-        public static final int timepick=0x7f09000c;
+        public static final int timepick=0x7f09000d;
         public static final int toggleButton=0x7f090021;
         public static final int toggleButton2=0x7f090022;
         public static final int toggleButton3=0x7f090023;

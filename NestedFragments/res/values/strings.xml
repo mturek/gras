@@ -28,7 +28,7 @@
     <string name="labelPeoples">People</string>
     <string name="toggle_turn_on">On</string>
       <string name="toggle_turn_off">Off</string>
-      <string name="labelRemainders">Remainders</string>
+      <string name="labelRemainders">Reminders</string>
       <string name="Due">Due on:</string>
     
     
@@ -37,11 +37,12 @@
     <string name="labelDate">Time</string>
     <string name="labelPeople">People</string>
     <string name="buttonCreate">Create</string>
-    <string name="pick_time">pick time</string>
-    <string name="pick_date">pick date</string>
+    <string name="pick_time">Select time</string>
+    <string name="pick_date">Select date</string>
     <string name="labelGroup">Group</string>
     
      <string-array name="groups_array">
+         <item>Select group</item>
         <item>No6</item>
         <item>SH</item>
         <item>789</item>
