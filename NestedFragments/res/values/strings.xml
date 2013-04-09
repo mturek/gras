@@ -15,5 +15,6 @@
     <string name="defaultTaskTime">Task time</string>
     <string name="defaultTaskGroup">Group</string>
     <string name="tasksTitle">Tasks:</string>
-
+	<string name="menu_add">Add task</string>
+	<string name="menu_refresh">Refresh</string>
 </resources>

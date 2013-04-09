@@ -25,9 +25,11 @@ public final class R {
         public static final int custom=0x7f020001;
         public static final int dishes=0x7f020002;
         public static final int ic_launcher=0x7f020003;
-        public static final int pet=0x7f020004;
-        public static final int plants=0x7f020005;
-        public static final int trash=0x7f020006;
+        public static final int ic_menu_add=0x7f020004;
+        public static final int ic_menu_refresh=0x7f020005;
+        public static final int pet=0x7f020006;
+        public static final int plants=0x7f020007;
+        public static final int trash=0x7f020008;
     }
     public static final class id {
         public static final int action_settings=0x7f08000b;
@@ -35,6 +37,8 @@ public final class R {
         public static final int container=0x7f080003;
         public static final int horizontalbar=0x7f080001;
         public static final int logo=0x7f080005;
+        public static final int menu_add=0x7f08000d;
+        public static final int menu_refresh=0x7f08000c;
         public static final int pager=0x7f080009;
         public static final int pager_title_strip=0x7f08000a;
         public static final int section_label=0x7f080004;
@@ -63,6 +67,8 @@ public final class R {
         public static final int defaultTaskName=0x7f05000a;
         public static final int defaultTaskTime=0x7f05000b;
         public static final int hello_world=0x7f050008;
+        public static final int menu_add=0x7f05000e;
+        public static final int menu_refresh=0x7f05000f;
         public static final int tasksTitle=0x7f05000d;
         public static final int title_section1=0x7f050002;
         public static final int title_section2=0x7f050003;
