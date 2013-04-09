@@ -1,5 +1,7 @@
 package com.example.newspinproj;
 
+
+
 import Model.Task;
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -24,6 +27,8 @@ public class TaskAssignent extends Activity {
 		Bundle grname = iin.getBundleExtra("groupinfo");
 		String gr = (String) grname.get("group");
 		System.out.println(gr);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		int spinindex = Integer.parseInt(gr);
 
@@ -103,6 +108,22 @@ public class TaskAssignent extends Activity {
 
 		return true;
 	}
+	
+	@Override
+	  public boolean onOptionsItemSelected(MenuItem item) {   
+		  switch (item.getItemId()) {        
+		  case android.R.id.home:           
+			  // This is called when the Home (Up) button is pressed           
+			  // in the Action Bar.           
+			  Intent parentActivityIntent = new Intent(this, MainActivity.class);           
+			  parentActivityIntent.addFlags(                   
+					  Intent.FLAG_ACTIVITY_CLEAR_TOP |              
+					  Intent.FLAG_ACTIVITY_NEW_TASK);         
+			  startActivity(parentActivityIntent);            
+		  finish();           
+		  return true;    }   
+	  return super.onOptionsItemSelected(item);
+	  }
 
 	public void showTimePickerDialog(View v) {
 		DialogFragment newFragment = new TimePickerFragment();
