@@ -33,6 +33,7 @@ public class User {
 		return fname;
 	}
 	
+	@Override
 	public String toString(){
 		return this.fname + this.lname;
 	}

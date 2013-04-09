@@ -39,7 +39,7 @@ public class bgNetworkingThread extends AsyncTask<String, Integer, String>{
             }
             
             String stuff = stringBuilder.toString();
-	        System.out.println(stuff);
+	        //System.out.println(stuff);
 	        DataContainer.recieveTaskList(stuff);
 	        return stringBuilder.toString();
 	        

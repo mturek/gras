@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.CursorAdapter;
@@ -39,7 +40,7 @@ public class ContactsFragment extends ListFragment {
 		//ContactsContract.Contacts.DISPLAY_NAME + "='Niki Edmonds' OR " + ContactsContract.Contacts.DISPLAY_NAME + "='Taja'"; 
 		//String[] projection = null;
 		String[] projection = new String[] { 
-				ContactsContract.Contacts._ID,
+				BaseColumns._ID,
 				ContactsContract.Contacts.DISPLAY_NAME,
                 ContactsContract.CommonDataKinds.Phone.NUMBER,
                 ContactsContract.Contacts.PHOTO_ID,
@@ -55,6 +56,7 @@ public class ContactsFragment extends ListFragment {
 		// cursor.close() - before destroying
 	}
 
+	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 
 		// get selected items

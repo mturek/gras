@@ -25,7 +25,8 @@ public  class TimePickerFragment extends DialogFragment
                 DateFormat.is24HourFormat(getActivity()));
     }
 
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    @Override
+	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
     	String min = minute + "";
     	if(minute < 10){
     		min = "0" + minute;

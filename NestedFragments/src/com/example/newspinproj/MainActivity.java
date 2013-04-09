@@ -5,6 +5,7 @@ import Model.User;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,22 +27,22 @@ public class MainActivity extends FragmentActivity implements
 	 * current dropdown position.
 	 */
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
+	private String curgroup;
 	private TabFragment tabFragment = new TabFragment();
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		@SuppressWarnings("unused")
 		DataContainer dataContainer = new DataContainer();
-		refreshData();
 		
 		
 		tabFragment = new TabFragment();
 		getSupportFragmentManager().beginTransaction()
 				.add(R.id.container, tabFragment).commit();
-
+		
+		this.firstData();
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(false);
@@ -55,7 +56,9 @@ public class MainActivity extends FragmentActivity implements
 						android.R.id.text1, new String[] {
 								getString(R.string.title_section4),
 								getString(R.string.title_section5),
-								getString(R.string.title_section6), }), this);
+								getString(R.string.title_section6),
+								getString(R.string.title_section7), 
+								getString(R.string.title_section8),}), this);
 	}
 
 	/**
@@ -106,7 +109,7 @@ public class MainActivity extends FragmentActivity implements
 		 * getSupportFragmentManager().beginTransaction()
 		 * .replace(R.id.container, fragment).commit(); return true;
 		 */
-
+		curgroup = "" + position;
 		tabFragment.changeData("Current group: " + position);
 		return true;
 	}
@@ -121,19 +124,30 @@ public class MainActivity extends FragmentActivity implements
 		case R.id.menu_add:
 			Toast.makeText(getApplicationContext(), "Create task", Toast.LENGTH_SHORT)
 					.show();
+			openTaskCreation();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
-	private void refreshData() {
+	private void openTaskCreation(){
+		
+		Intent intent = new Intent(MainActivity.this, TaskAssignent.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("group", curgroup);
+        intent.putExtra("groupinfo", bundle);
+        startActivity(intent);
+	}
+	
+	private void firstData(){
 		User u = new User("Niki", "mary", "sally", 234);
-		String res = u.getTasks();
-		Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT)
-		.show();
-		Toast.makeText(getApplicationContext(), ""+DataContainer.getTasks().size(), Toast.LENGTH_SHORT)
-		.show();
+		u.getTasks();
+	}
+	
+	private void refreshData() {
+	
+		this.recreate();
 	}
 	
 	public void redrawData() {

@@ -57,6 +57,7 @@ public class TabFragment extends Fragment {
 		mViewPager.setCurrentItem(1);
 		
 		
+		
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,6 +134,10 @@ public class TabFragment extends Fragment {
 				return getString(R.string.title_section3).toUpperCase(l);
 			}
 			return null;
+		}
+
+		public void setTaskFrag(TaskFragment tf) {
+			this.taskFragment = tf;
 		}
 	}
 

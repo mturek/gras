@@ -7,8 +7,10 @@
     <string name="title_section2">Tasks</string>
     <string name="title_section3">Calendar</string>
       <string name="title_section4">All groups</string>
-    <string name="title_section5">789</string>
+    <string name="title_section5">No6</string>
     <string name="title_section6">SH</string>
+    <string name="title_section7">789</string>
+    <string name="title_section8">Life</string>
     <string name="hello_world">Hello world!</string>
     <string name="alttext_dishes">Dishes picture</string>
 	<string name="defaultTaskName">Task name</string>
@@ -20,5 +22,22 @@
     <string name="emptylist">Contact list empty</string>
     <string name="defaultContactName">Name Surname</string>
     <string name="defaultContactNumber">(123)123 1234</string>
+    
+    
+
+    <string name="labelTask">Task</string>
+    <string name="labelDate">Time</string>
+    <string name="labelPeople">People</string>
+    <string name="buttonCreate">Create</string>
+    <string name="pick_time">pick time</string>
+    <string name="pick_date">pick date</string>
+    <string name="labelGroup">Group</string>
+    
+     <string-array name="groups_array">
+        <item>No6</item>
+        <item>SH</item>
+        <item>789</item>
+        <item>Life</item>
+    </string-array>
 	
 </resources>

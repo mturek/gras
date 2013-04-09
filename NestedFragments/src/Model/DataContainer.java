@@ -14,36 +14,45 @@ public  class DataContainer {
 	}
 	
 	public static void recieveTaskList(String tl){
-		System.out.println("i'm here");
 		String[] first = tl.split("\\|");
 		for( int i =0; i< first.length ; i++){
 			String thing = first[i];
 			String[] stuffs = thing.split("\\.");
+			//System.out.println(stuffs.length);
 		
-			if(stuffs.length == 7){
+			if(stuffs.length == 5){
 
 				boolean notthere = true;
 				for(int j = 0; j < tasks.size(); j++){
 
 					if (stuffs[0].equals(tasks.get(j).getutid())){
-						System.out.println("i'm here");
 						notthere = false;
 				
 					}
 				}
 				if(notthere){
-						Task res = new Task(Integer.parseInt(stuffs[0]) ,4, stuffs[2], stuffs[3], stuffs[4], stuffs[5], stuffs[6]);
+						Task res = new Task(Integer.parseInt(stuffs[0]) , stuffs[1], stuffs[2], stuffs[3], stuffs[4]);
+						//System.out.println("got a task");
 						tasks.add(res);
 				}
 				
 				
 			}
 			else{
-				System.out.println("didid");
 			}
 		}
 		
 		System.out.println(tasks.size());
+	}
+	
+	public static ArrayList<Task> getTasksByUname(String uname){
+		ArrayList<Task> ret = new ArrayList<Task>();
+		for(Task t: tasks){
+			if(t.getuser().equals(uname)){
+				ret.add(t);
+			}
+		}
+		return ret;
 	}
 	
 	public static void recieveUserList(String ul){

@@ -29,6 +29,7 @@ public class URLCreator implements ServerRequestVisitor {
 	public String onNewTask(NewTaskReq newtaskreq) {
 	
 		String req =  rootURL + "command=newTask" + generateURLpart(newtaskreq.fields, newtaskreq.values);
+		System.out.println(req);
 		HttpInterface.sendreq(req);
 		return req;
 	}

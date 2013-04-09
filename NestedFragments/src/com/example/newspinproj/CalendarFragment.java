@@ -3,7 +3,6 @@ package com.example.newspinproj;
 //import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 public class CalendarFragment extends Fragment {
 	private View view = null;
 
+	@Override
 	public void onStart() {
 		super.onStart();
 

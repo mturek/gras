@@ -1,7 +1,10 @@
 package com.example.newspinproj;
 
 //import android.app.ListFragment;
-import android.app.Activity;
+import java.util.ArrayList;
+
+import Model.DataContainer;
+import Model.Task;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -24,7 +27,7 @@ public class TaskFragment extends ListFragment {
         // configuration changes for example
         //setRetainInstance(true);
 		
-		Task[] values = new Task[12];
+		/*Task[] values = new Task[12];
 		values[0] = new Task("Dish duty", "29/04 13:00", "No. 6");
 		values[1] = new Task("Take out the trash", "29/04 15:30", "No. 6");
 		values[2] = new Task("Finish the proposal", "29/04 17:00", "GrAs");
@@ -36,8 +39,20 @@ public class TaskFragment extends ListFragment {
 		values[8] = new Task("Feed the pets", "09/05 14:00", "Family");
 		values[9] = new Task("Dish duty", "15/05 19:50", "No. 6");
 		values[10] = new Task("Water the plants", "02/06 13:15", "No. 6");
-		values[11] = new Task("Take out the trash", "05/06 22:00", "No. 6");
+		values[11] = new Task("Take out the trash", "05/06 22:00", "No. 6");*/
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		ArrayList<Task> copy = DataContainer.getTasks();
+		if(copy == null){
+			copy = new ArrayList<Task>();
+		}
+		ArrayList<Task> values =  new ArrayList<Task>(copy);
+		System.out.println(values.toString());
 		setListAdapter(new MobileArrayAdapter(this.getActivity(), values));
 
 	}
@@ -62,11 +77,12 @@ public class TaskFragment extends ListFragment {
 		return view;
 	}
 
+	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		
 		// get selected items
 		String selectedValue = ((Task) getListAdapter().getItem(position))
-				.getName();
+				.getname();
 		Toast.makeText(this.getActivity(), selectedValue, Toast.LENGTH_SHORT).show();
 
 	}
@@ -114,16 +130,17 @@ public class TaskFragment extends ListFragment {
 
 	private class MobileArrayAdapter extends ArrayAdapter<Task> {
 		private final Context context;
-		private final Task[] values;
+		private final ArrayList<Task> values;
 
-		public MobileArrayAdapter(Context context, Task[] values) {
-			super(context, R.layout.listviewlayout, values);
+		public MobileArrayAdapter(Context context, ArrayList<Task> values2) {
+			super(context, R.layout.listviewlayout, values2);
 			this.context = context;
-			this.values = values;
+			this.values = values2;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
+		//	System.out.println("got a value set");
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -136,9 +153,9 @@ public class TaskFragment extends ListFragment {
 			TextView taskGroupView = (TextView) rowView
 					.findViewById(R.id.taskGroup);
 			ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
-			taskNameView.setText(values[position].getName());
-			taskTimeView.setText(values[position].getTime());
-			taskGroupView.setText(values[position].getGroup());
+			taskNameView.setText(values.get(position).getname());
+			taskTimeView.setText(values.get(position).getTime());
+			taskGroupView.setText(values.get(position).getGroup());
 
 			/*
 			 * Typeface tf = Typeface.defaultFromStyle(Typeface.ITALIC);
@@ -146,9 +163,9 @@ public class TaskFragment extends ListFragment {
 			 */
 
 			// Change icon based on name
-			String s = values[position].getName();
+			String s = values.get(position).getname();
 
-			System.out.println(s);
+			//System.out.println(s);
 
 			if (s.equals("Take out the trash")) {
 				imageView.setImageResource(R.drawable.trash);
