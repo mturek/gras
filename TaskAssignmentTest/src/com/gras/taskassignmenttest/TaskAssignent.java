@@ -1,13 +1,18 @@
 package com.gras.taskassignmenttest;
 
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.content.Intent;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 public class TaskAssignent extends Activity {
@@ -16,6 +21,32 @@ public class TaskAssignent extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_task_assignent);
+		Intent iin = getIntent();
+		Bundle grname = iin.getBundleExtra("groupinfo");
+		String gr = (String) grname.get("group");
+		System.out.println(gr);
+		
+		int spinindex;
+		if(gr.equals("No6")){
+			spinindex = 0;
+		}
+		else if(gr.equals("SH")){
+			spinindex = 1;
+		}
+		else if(gr.equals("789")){
+			spinindex = 1;
+		}
+		else if(gr.equals("Life")){
+			spinindex = 1;
+		}
+		else{
+			spinindex = 0;
+		}
+		
+		Spinner groupspin = (Spinner)findViewById(R.id.spin);
+		
+		groupspin.setSelection(spinindex, false);
+
 		
 		/*TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 		timePicker.setIs24HourView(true);*/
@@ -44,12 +75,34 @@ public class TaskAssignent extends Activity {
 		        rb[i].setText("Test");
 		    }
 		    layout.addView(rg); //you add the whole RadioGroup to the layout 
+		    
+		    Button createButton = (Button)findViewById(R.id.buttonCreate);
+		    
+		    createButton.setOnClickListener(new View.OnClickListener() {
+
+			      @Override
+			      public void onClick(View view) {
+			        Intent intent = new Intent(TaskAssignent.this, Dummy.class);
+			        startActivity(intent);
+			      }
+
+			    });
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.task_assignent, menu);
 		return true;
+	}
+	
+	public void showTimePickerDialog(View v) {
+	    DialogFragment newFragment = new TimePickerFragment();
+	    newFragment.show(getFragmentManager(), "timePicker");
+	}
+	
+	public void showDatePickerDialog(View v) {
+	    DialogFragment newFragment = new DatePickerFragment();
+	    newFragment.show(getFragmentManager(), "datePicker");
 	}
 
 }
