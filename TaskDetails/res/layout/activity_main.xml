@@ -7,22 +7,33 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-    
-    
-
-    <TextView
+   
+     <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trash" />
+     
+      <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imageView1"
         android:text="@string/description" />
-   
-    
-    
-    <TextView
-        android:id="@+id/labelPeoples"
+      
+      <TextView
+         android:id="@+id/Due"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/description"
+         android:layout_below="@id/description"
+        android:text="@string/Due" />
+          
+      
+    <TextView
+        android:id="@+id/labelPeoples"
+        android:layout_below="@id/Due"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/labelPeoples" />
     
     <HorizontalScrollView
@@ -42,18 +53,7 @@
         </LinearLayout>
     </HorizontalScrollView>
     
-      
-    <Button
-        android:id="@+id/buttonSwap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="false"
-        android:text="@string/buttonSwap" />
-    
-
-    
-    <TextView
+     <TextView
         android:id="@+id/labelRemainders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,5 +88,19 @@
           android:layout_below="@id/labelRemainders"
         android:layout_toRightOf="@id/toggleButton2"
         android:text="ToggleButton" />
+
+  
+    
+      
+    <Button
+        android:id="@+id/buttonSwap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:text="@string/buttonSwap" />
+   
+    
+   
 
 </RelativeLayout>

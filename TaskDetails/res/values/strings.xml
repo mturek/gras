@@ -3,11 +3,12 @@
 
     <string name="app_name">TaskDetails</string>
     <string name="action_settings">Settings</string>
-    <string name="description">Description: This task is to clean the kitchen table</string>
+    <string name="description">Description: This task is to throw away the trash from all rooms once per day</string>
     <string name="buttonSwap">Swap Request</string>
     <string name="labelPeoples">People</string>
     <string name="toggle_turn_on">On</string>
       <string name="toggle_turn_off">Off</string>
       <string name="labelRemainders">Remainders</string>
+      <string name="Due">Due on:</string>
 
 </resources>
