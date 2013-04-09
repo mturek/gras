@@ -17,4 +17,8 @@
     <string name="tasksTitle">Tasks:</string>
 	<string name="menu_add">Add task</string>
 	<string name="menu_refresh">Refresh</string>
+    <string name="emptylist">Contact list empty</string>
+    <string name="defaultContactName">Name Surname</string>
+    <string name="defaultContactNumber">(123)123 1234</string>
+	
 </resources>

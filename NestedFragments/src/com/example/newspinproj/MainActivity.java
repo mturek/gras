@@ -1,5 +1,7 @@
 package com.example.newspinproj;
 
+import Model.DataContainer;
+import Model.User;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.Context;
@@ -9,10 +11,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.OnNavigationListener {
@@ -29,6 +33,11 @@ public class MainActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		@SuppressWarnings("unused")
+		DataContainer dataContainer = new DataContainer();
+		refreshData();
+		
+		
 		tabFragment = new TabFragment();
 		getSupportFragmentManager().beginTransaction()
 				.add(R.id.container, tabFragment).commit();
@@ -48,7 +57,6 @@ public class MainActivity extends FragmentActivity implements
 								getString(R.string.title_section5),
 								getString(R.string.title_section6), }), this);
 	}
-
 
 	/**
 	 * Backward-compatible version of {@link ActionBar#getThemedContext()} that
@@ -103,6 +111,34 @@ public class MainActivity extends FragmentActivity implements
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.menu_refresh:
+			refreshData();
+			return true;
+		case R.id.menu_add:
+			Toast.makeText(getApplicationContext(), "Create task", Toast.LENGTH_SHORT)
+					.show();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private void refreshData() {
+		User u = new User("Niki", "mary", "sally", 234);
+		String res = u.getTasks();
+		Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT)
+		.show();
+		Toast.makeText(getApplicationContext(), ""+DataContainer.getTasks().size(), Toast.LENGTH_SHORT)
+		.show();
+	}
+	
+	public void redrawData() {
+		// TODO: 
+	}
 	/**
 	 * A dummy fragment representing a section of the app, but that simply
 	 * displays dummy text.

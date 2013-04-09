@@ -2,6 +2,7 @@ package com.gras.contactstest;
 
 import java.io.InputStream;
 
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.database.Cursor;

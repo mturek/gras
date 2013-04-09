@@ -1,6 +1,5 @@
 package com.android.test;
 
-import android.os.AsyncTask;
 
 
 public class HttpInterface {
