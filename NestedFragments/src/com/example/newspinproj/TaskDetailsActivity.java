@@ -41,7 +41,7 @@ import android.widget.ToggleButton;
 			public void onClick(View v) {
 	 
 			   StringBuffer result = new StringBuffer();
-			   result.append("Remainder in").append(toggleButton.getText());
+			   result.append("Reminder in").append(toggleButton.getText());
 		  
 			   Toast.makeText(TaskDetailsActivity.this, result.toString(),
 				Toast.LENGTH_SHORT).show();
@@ -62,7 +62,7 @@ import android.widget.ToggleButton;
 		        StateListDrawable states = new StateListDrawable();
 		        
 		        //states.addState(new int[] {-android.R.attr.stateNotNeeded},R.drawable.btn_off); 
-		        states.addState(new int[] {-android.R.attr.state_checked},getApplicationContext().getResources().getDrawable(R.drawable.ic_launcher));
+		        states.addState(new int[] {-android.R.attr.state_checked},getApplicationContext().getResources().getDrawable(R.drawable.custom));
 		        rb[i].setButtonDrawable(states);    
 		      //  rb[i].setWidth(50);
 		       // rb[i].setHeight(50);

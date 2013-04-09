@@ -7,35 +7,83 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TaskDetailsActivity" >
-   
-     <ImageView
+
+    <ImageView
         android:id="@+id/imageView1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/alttext_dishes"
+        android:src="@drawable/dishes" />
+
+    <TextView
+        android:id="@+id/taskDetailsName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/trash" />
-     
-      <TextView
+        android:layout_alignTop="@id/imageView1"
+        android:layout_toRightOf="@id/imageView1"
+        android:text="@string/defaultTaskName"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/taskDetailsTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/imageView1"
+        android:layout_toRightOf="@id/imageView1"
+        android:text="@string/defaultTaskTime"
+        android:textSize="15sp"
+        android:textStyle="italic" />
+
+    <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_below="@id/imageView1"
         android:text="@string/description" />
-      
-      <TextView
-         android:id="@+id/Due"
+
+    <View
+        android:id="@+id/taskDetailsHorizontalbar"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/description"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/darker_gray" />
+
+     <TextView
+        android:id="@+id/taskGroupLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_below="@id/description"
-        android:text="@string/Due" />
-          
-      
+        android:layout_below="@id/taskDetailsHorizontalbar"
+        android:layout_alignParentLeft="true"
+        android:text="@string/taskDetailsGroupLabel"
+        android:textStyle="bold" 
+        android:textSize="15sp" />
+     
+     <TextView
+        android:id="@+id/taskDetailsGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/taskDetailsHorizontalbar"
+        android:layout_toRightOf="@id/taskGroupLabel"
+        android:text="@string/taskDetailsGroupLabel"
+        android:textSize="15sp" />
+
     <TextView
         android:id="@+id/labelPeoples"
-        android:layout_below="@id/Due"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/taskDetailsGroup"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:textStyle="bold" 
         android:text="@string/labelPeoples" />
-    
+
     <HorizontalScrollView
         android:id="@+id/taskPrototypesView"
         android:layout_width="match_parent"
@@ -52,46 +100,34 @@
             <!-- radio buttons -->
         </LinearLayout>
     </HorizontalScrollView>
-    
-     <TextView
+
+    <TextView
         android:id="@+id/labelRemainders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/taskPrototypesView"
         android:text="@string/labelRemainders" />
-    
-        <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOn="10 mins On "
-        android:textOff="10 mins Off"
-        android:layout_below="@id/labelRemainders"
-        android:text="ToggleButton" />
-    
+
     <ToggleButton
         android:id="@+id/toggleButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:textOn="1 hour On "
-        android:textOff="1 hour Off"
-          android:layout_below="@id/labelRemainders"
-        android:layout_toRightOf="@id/toggleButton"
- />
-    
+        android:layout_below="@id/labelRemainders"
+        android:layout_centerHorizontal="true"        
+        
+        android:textOff="1 hour"
+        android:textOn="1 hour" />
+
     <ToggleButton
         android:id="@+id/toggleButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:textOn="1 day On "
-        android:textOff="1 day Off"
-          android:layout_below="@id/labelRemainders"
+        android:layout_below="@id/labelRemainders"
         android:layout_toRightOf="@id/toggleButton2"
-        android:text="ToggleButton" />
+        android:text="ToggleButton"
+        android:textOff="1 day"
+        android:textOn="1 day " />
 
-  
-    
-      
     <Button
         android:id="@+id/buttonSwap"
         android:layout_width="wrap_content"
@@ -99,8 +135,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="false"
         android:text="@string/buttonSwap" />
-   
-    
-   
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/toggleButton2"
+        android:layout_alignBottom="@id/toggleButton2"
+        android:layout_toLeftOf="@id/toggleButton2"
+        android:text="ToggleButton"
+        android:textOff="10 mins"
+        android:textOn="10 mins" />
 
 </RelativeLayout>
