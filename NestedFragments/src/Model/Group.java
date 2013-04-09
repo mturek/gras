@@ -3,12 +3,13 @@ package Model;
 import java.util.ArrayList;
 
 public class Group {
-
+	private String name;
 	private ArrayList<User> users;
 	private ArrayList<User> leaders;
 	private ArrayList<Task> tasks;
 	
 	public Group(){
+		name = "";
 		users = new ArrayList<User>();
 		leaders = new ArrayList<User>();
 		tasks = new ArrayList<Task>();
