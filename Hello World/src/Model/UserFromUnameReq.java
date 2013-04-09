@@ -4,6 +4,16 @@ import java.util.ArrayList;
 
 public class UserFromUnameReq implements ServerRequest{
 
+	ArrayList<String> fields;
+	ArrayList<String> values;
+	
+	public UserFromUnameReq(String uname){
+		fields = new ArrayList<String>();
+		fields.add("uname");
+		values = new ArrayList<String>();
+		values.add(uname);
+	}
+	
 	@Override
 	public String accept(ServerRequestVisitor v) {
 		return v.onUserFromNewNameReq(this);
@@ -11,18 +21,16 @@ public class UserFromUnameReq implements ServerRequest{
 
 	@Override
 	public String send() {
-		// TODO Auto-generated method stub
-		return null;
+		URLCreator urler = new URLCreator();
+		return this.accept(urler);
 	}
 
 	public ArrayList<String> getfields() {
-		// TODO Auto-generated method stub
-		return null;
+		return fields;
 	}
 
 	public ArrayList<String> getValues() {
-		// TODO Auto-generated method stub
-		return null;
+		return values;
 	}
 
 }

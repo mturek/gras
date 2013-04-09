@@ -30,8 +30,7 @@ public class UserTasksRequest implements ServerRequest{
 	@Override
 	public String send() {
 		URLCreator urler = new URLCreator();
-		String res = urler.onUserTasksRequest(this);
-		return HttpInterface.sendreq(res);
+		return this.accept(urler);
 		
 	}
 
