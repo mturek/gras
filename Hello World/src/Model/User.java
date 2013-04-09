@@ -1,25 +1,66 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class User {
 	
-	private String name;
-	private int uuid;
+	private ArrayList<String> fields;
+	private ArrayList<String> values;
+	private String uname;
+	private String fname;
+	private String lname;
+	private Integer phone;
 	
-	public User(String name, int uuid){
-		this.name = name;
-		this.uuid = uuid;
+	public User(String uname, String fname, String lname, int phone){
+		this.uname = uname;
+		this.fname = fname;
+		this.lname = lname;
+		this.phone = phone;
+		this.fields = new ArrayList<String>();
+		fields.add("uname");
+		fields.add("fname");
+		fields.add("lname");
+		fields.add("phone");
 		
 	}
 	
 	public String getname(){
-		return name;
+		return uname;
 	}
 	
-	public int getuuid(){
-		return uuid;
+	
+	public String getFname(){
+		return fname;
 	}
 	
 	public String toString(){
-		return this.name;
+		return this.fname + this.lname;
+	}
+	
+	public int getPhone(){
+		return phone;
+	}
+	
+	public ArrayList<String> getFields(){
+		return fields;
+	}
+	
+	public ArrayList<String> marshallValues(){
+		values = new ArrayList<String>();
+		values.add(uname);
+		values.add(fname);
+		values.add(lname);
+		values.add(phone.toString());
+		return values;
+	}
+	
+	public String sendToServer(){
+		NewUserReq nur = new NewUserReq(this);
+		return nur.send();
+	}
+	
+	public String getTasks(){
+		UserTasksRequest utr = new UserTasksRequest(this.uname);
+		return utr.send();
 	}
 }

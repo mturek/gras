@@ -1,7 +1,8 @@
 package com.android.test;
 
 
-import Model.Leader;
+import Model.Group;
+
 import Model.Task;
 import Model.User;
 import android.app.Activity;
@@ -36,11 +37,16 @@ public class MainActivity extends Activity {
 		
   	  });
     }
+	
+	public void pullTasks(){
+		
+	}
 
 	public  void changeText(){
-		Task newTask = new Task(3, new User("Niki", 3), new Leader("michael", 4) );
-		newTask.SendToServer();
-		text.setText("did something");
+		User u = new User("Niki", "mary", "sally", 234);
+		String res = u.getTasks();
+		System.out.println(res);
+		text.setText(res);
 	}
 
     @Override

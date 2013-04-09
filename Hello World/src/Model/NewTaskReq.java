@@ -2,6 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
+import com.android.test.HttpInterface;
+
 
 public class NewTaskReq implements ServerRequest {
 
@@ -16,6 +18,13 @@ public class NewTaskReq implements ServerRequest {
 	@Override
 	public String accept(ServerRequestVisitor v) {
 		return v.onNewTask(this);
+	}
+
+	@Override
+	public String send() {
+		URLCreator urler = new URLCreator();
+		String req = this.accept(urler);
+		return HttpInterface.sendreq(req);
 	}
 	
 	
