@@ -37,23 +37,29 @@ public final class R {
         public static final int trash2_selected=0x7f02000a;
     }
     public static final class id {
-        public static final int action_settings=0x7f09001c;
+        public static final int Due=0x7f09001e;
+        public static final int action_settings=0x7f090025;
         public static final int buttonCreate=0x7f090010;
+        public static final int buttonSwap=0x7f090024;
         public static final int calendarview=0x7f090000;
         public static final int contactImage=0x7f090011;
         public static final int contactName=0x7f090012;
         public static final int contactNumber=0x7f090013;
         public static final int container=0x7f090003;
         public static final int datepick=0x7f09000d;
+        public static final int description=0x7f09001d;
         public static final int dumdum=0x7f090014;
         public static final int horizontalbar=0x7f090001;
+        public static final int imageView1=0x7f09001c;
         public static final int labelDate=0x7f09000a;
         public static final int labelGroup=0x7f090004;
         public static final int labelPeople=0x7f09000e;
+        public static final int labelPeoples=0x7f09001f;
+        public static final int labelRemainders=0x7f090020;
         public static final int labelTask=0x7f090007;
         public static final int logo=0x7f090016;
-        public static final int menu_add=0x7f09001e;
-        public static final int menu_refresh=0x7f09001d;
+        public static final int menu_add=0x7f090027;
+        public static final int menu_refresh=0x7f090026;
         public static final int pager=0x7f09001a;
         public static final int pager_title_strip=0x7f09001b;
         public static final int section_label=0x7f090015;
@@ -68,6 +74,9 @@ public final class R {
         public static final int taskTime=0x7f090018;
         public static final int timeDate=0x7f09000b;
         public static final int timepick=0x7f09000c;
+        public static final int toggleButton=0x7f090021;
+        public static final int toggleButton2=0x7f090022;
+        public static final int toggleButton3=0x7f090023;
     }
     public static final class layout {
         public static final int activity_calendar=0x7f030000;
@@ -80,6 +89,7 @@ public final class R {
         public static final int listviewlayout=0x7f030007;
         public static final int main_fragment=0x7f030008;
         public static final int task_fragment=0x7f030009;
+        public static final int taskdetailsact=0x7f03000a;
     }
     public static final class menu {
         public static final int calendar=0x7f080000;
@@ -87,25 +97,30 @@ public final class R {
         public static final int task_assignent=0x7f080002;
     }
     public static final class string {
+        public static final int Due=0x7f05001b;
         public static final int action_settings=0x7f050001;
         public static final int alttext_dishes=0x7f05000b;
         public static final int app_name=0x7f050000;
-        public static final int buttonCreate=0x7f050018;
+        public static final int buttonCreate=0x7f05001f;
+        public static final int buttonSwap=0x7f050016;
         public static final int defaultContactName=0x7f050013;
         public static final int defaultContactNumber=0x7f050014;
         public static final int defaultTaskGroup=0x7f05000e;
         public static final int defaultTaskName=0x7f05000c;
         public static final int defaultTaskTime=0x7f05000d;
+        public static final int description=0x7f050015;
         public static final int emptylist=0x7f050012;
         public static final int hello_world=0x7f05000a;
-        public static final int labelDate=0x7f050016;
-        public static final int labelGroup=0x7f05001b;
-        public static final int labelPeople=0x7f050017;
-        public static final int labelTask=0x7f050015;
+        public static final int labelDate=0x7f05001d;
+        public static final int labelGroup=0x7f050022;
+        public static final int labelPeople=0x7f05001e;
+        public static final int labelPeoples=0x7f050017;
+        public static final int labelRemainders=0x7f05001a;
+        public static final int labelTask=0x7f05001c;
         public static final int menu_add=0x7f050010;
         public static final int menu_refresh=0x7f050011;
-        public static final int pick_date=0x7f05001a;
-        public static final int pick_time=0x7f050019;
+        public static final int pick_date=0x7f050021;
+        public static final int pick_time=0x7f050020;
         public static final int tasksTitle=0x7f05000f;
         public static final int title_section1=0x7f050002;
         public static final int title_section2=0x7f050003;
@@ -115,6 +130,8 @@ public final class R {
         public static final int title_section6=0x7f050007;
         public static final int title_section7=0x7f050008;
         public static final int title_section8=0x7f050009;
+        public static final int toggle_turn_off=0x7f050019;
+        public static final int toggle_turn_on=0x7f050018;
     }
     public static final class style {
         /** 

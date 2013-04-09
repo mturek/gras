@@ -1,0 +1,106 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".TaskDetailsActivity" >
+   
+     <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trash" />
+     
+      <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView1"
+        android:text="@string/description" />
+      
+      <TextView
+         android:id="@+id/Due"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_below="@id/description"
+        android:text="@string/Due" />
+          
+      
+    <TextView
+        android:id="@+id/labelPeoples"
+        android:layout_below="@id/Due"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelPeoples" />
+    
+    <HorizontalScrollView
+        android:id="@+id/taskPrototypesView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelPeoples"
+        android:gravity="center" >
+
+        <LinearLayout
+            android:id="@+id/taskPrototypes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <!-- radio buttons -->
+        </LinearLayout>
+    </HorizontalScrollView>
+    
+     <TextView
+        android:id="@+id/labelRemainders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/taskPrototypesView"
+        android:text="@string/labelRemainders" />
+    
+        <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="10 mins On "
+        android:textOff="10 mins Off"
+        android:layout_below="@id/labelRemainders"
+        android:text="ToggleButton" />
+    
+    <ToggleButton
+        android:id="@+id/toggleButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:textOn="1 hour On "
+        android:textOff="1 hour Off"
+          android:layout_below="@id/labelRemainders"
+        android:layout_toRightOf="@id/toggleButton"
+ />
+    
+    <ToggleButton
+        android:id="@+id/toggleButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:textOn="1 day On "
+        android:textOff="1 day Off"
+          android:layout_below="@id/labelRemainders"
+        android:layout_toRightOf="@id/toggleButton2"
+        android:text="ToggleButton" />
+
+  
+    
+      
+    <Button
+        android:id="@+id/buttonSwap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:text="@string/buttonSwap" />
+   
+    
+   
+
+</RelativeLayout>

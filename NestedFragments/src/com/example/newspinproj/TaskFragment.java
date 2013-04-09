@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Model.DataContainer;
 import Model.Task;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -84,6 +85,8 @@ public class TaskFragment extends ListFragment {
 		String selectedValue = ((Task) getListAdapter().getItem(position))
 				.getname();
 		Toast.makeText(this.getActivity(), selectedValue, Toast.LENGTH_SHORT).show();
+		Intent i = new Intent(getActivity(), TaskDetailsActivity.class);
+        startActivity(i);
 
 	}
 	
