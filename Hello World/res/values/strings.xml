@@ -6,5 +6,20 @@
     <string name="hello_world">Hello world!</string>
     <string name="hello21w">Hello 21W.789!!</string>
     <string name="presforbye">press to say goodbye</string>
+    
+    <string name="labelTask">Task</string>
+    <string name="labelDate">Time</string>
+    <string name="labelPeople">People</string>
+    <string name="buttonCreate">Create</string>
+    <string name="pick_time">pick time</string>
+    <string name="pick_date">pick date</string>
+    <string name="labelGroup">Group</string>
+    
+     <string-array name="groups_array">
+        <item>No6</item>
+        <item>SH</item>
+        <item>789</item>
+        <item>Life</item>
+    </string-array>
 
 </resources>
