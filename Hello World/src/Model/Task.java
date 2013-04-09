@@ -29,7 +29,7 @@ public class Task {
 		this.values.add( user2);
 		this.values.add( g1);
 
-
+		this.utid= utid;
 	/*	this.protoid = protoid;
 		this.date = date;
 		this.time = time;
@@ -58,6 +58,9 @@ public class Task {
 		return this.values;
 	}
 	
+	public String getutid(){
+		return utid.toString();
+	}
 	public void SendToServer(){
 		URLCreator urler = new URLCreator();
 		NewTaskReq taskreq = new NewTaskReq(this.getfields(), this.getvalues());

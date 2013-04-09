@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public  class DataContainer {
 
-	static ArrayList<User> users = new ArrayList<User>();
-	static ArrayList<TaskProto> taskprotos = new ArrayList<TaskProto>();
-	static ArrayList<Task> tasks = new ArrayList<Task>();
-	
+	static ArrayList<User> users;
+	static ArrayList<TaskProto> taskprotos;
+	static ArrayList<Task> tasks;
 	public DataContainer(){
-		
+		 users = new ArrayList<User>();
+		 taskprotos = new ArrayList<TaskProto>();
+		 tasks = new ArrayList<Task>();
 	}
 	
 	public static void recieveTaskList(String tl){
@@ -20,11 +21,25 @@ public  class DataContainer {
 			String[] stuffs = thing.split("\\.");
 		
 			if(stuffs.length == 7){
-				Task res = new Task(2,4, stuffs[2], stuffs[3], stuffs[4], stuffs[5], stuffs[6]);
-				tasks.add(res);
+
+				boolean notthere = true;
+				for(int j = 0; j < tasks.size(); j++){
+
+					if (stuffs[0].equals(tasks.get(j).getutid())){
+						System.out.println("i'm here");
+						notthere = false;
+				
+					}
+				}
+				if(notthere){
+						Task res = new Task(Integer.parseInt(stuffs[0]) ,4, stuffs[2], stuffs[3], stuffs[4], stuffs[5], stuffs[6]);
+						tasks.add(res);
+				}
+				
+				
 			}
 			else{
-				
+				System.out.println("didid");
 			}
 		}
 		

@@ -3,6 +3,7 @@ package com.android.test;
 
 import Model.Group;
 
+import Model.DataContainer;
 import Model.Task;
 import Model.User;
 import android.app.Activity;
@@ -26,13 +27,14 @@ public class MainActivity extends Activity {
         MainActivity.text = (TextView) this.findViewById(R.id.textshit);
         MainActivity.text.setText("Hello 21W.789!");
         this.closeButton = (Button)this.findViewById(R.id.goodbye);
-  
+        DataContainer data = new DataContainer();
+   
   	  	this.closeButton.setOnClickListener(new OnClickListener() {
   	    
 	  	    public void onClick(View v) {
 	  	      changeText();
 	  	    }
-
+	  	   
 		
 		
   	  });
