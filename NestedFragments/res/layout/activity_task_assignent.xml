@@ -123,8 +123,14 @@
         android:id="@+id/taskPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/labelPeople"
         android:orientation="horizontal" >
 
+        <Spinner
+            android:id="@+id/spinpeeps"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/people_array" />
         <!-- people badges -->
     </LinearLayout>
 

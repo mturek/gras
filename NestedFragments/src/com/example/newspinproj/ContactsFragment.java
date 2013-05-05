@@ -35,7 +35,7 @@ public class ContactsFragment extends ListFragment {
 		for(String member : members) selection += ContactsContract.Contacts.DISPLAY_NAME + "='" + member + "' OR ";
 		selection = selection.substring(0, selection.length() - 3);
 		
-		Toast.makeText(this.getActivity(), selection, Toast.LENGTH_LONG).show();
+		//Toast.makeText(this.getActivity(), selection, Toast.LENGTH_LONG).show();
 		
 		//ContactsContract.Contacts.DISPLAY_NAME + "='Niki Edmonds' OR " + ContactsContract.Contacts.DISPLAY_NAME + "='Taja'"; 
 		//String[] projection = null;
@@ -72,7 +72,7 @@ public class ContactsFragment extends ListFragment {
 		String selectedValue = selectedCursor.getString(selectedCursor
 				.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-		Toast.makeText(this.getActivity(), selectedValue, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this.getActivity(), selectedValue, Toast.LENGTH_SHORT).show();
 
 	}
 	

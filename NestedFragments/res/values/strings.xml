@@ -23,7 +23,7 @@
     <string name="defaultContactName">Name Surname</string>
     <string name="defaultContactNumber">(123)123 1234</string>
     <string name="taskDetailsGroupLabel">Group: </string>
-    <string name="description">Description: This task is to throw away the trash from all rooms once per day</string>
+    <string name="description">Description: Clean all dishes, put food in the fridge, wash sinks, clean tables</string>
     <string name="buttonSwap">Swap Request</string>
     <string name="labelPeoples">People</string>
     <string name="toggle_turn_on">On</string>
@@ -47,6 +47,14 @@
         <item>SH</item>
         <item>789</item>
         <item>Life</item>
+    </string-array>
+    
+     <string-array name="people_array">
+         <item>Select Person</item>
+        <item>Niki</item>
+        <item>Michael</item>
+        <item>Alvaro</item>
+        <item>WOOWOOOO</item>
     </string-array>
 	
 </resources>

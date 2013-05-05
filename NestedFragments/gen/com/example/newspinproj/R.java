@@ -10,6 +10,7 @@ package com.example.newspinproj;
 public final class R {
     public static final class array {
         public static final int groups_array=0x7f060000;
+        public static final int people_array=0x7f060001;
     }
     public static final class attr {
     }
@@ -42,50 +43,52 @@ public final class R {
         public static final int trash_selected=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f090029;
-        public static final int buttonCreate=0x7f090010;
-        public static final int buttonSwap=0x7f090027;
+        public static final int action_settings=0x7f09002b;
+        public static final int buttonCreate=0x7f090011;
+        public static final int buttonSwap=0x7f090028;
         public static final int calendarview=0x7f090000;
-        public static final int contactImage=0x7f090011;
-        public static final int contactName=0x7f090012;
-        public static final int contactNumber=0x7f090013;
+        public static final int contactImage=0x7f090012;
+        public static final int contactName=0x7f090013;
+        public static final int contactNumber=0x7f090014;
         public static final int container=0x7f090003;
         public static final int datepick=0x7f09000c;
-        public static final int description=0x7f09001f;
-        public static final int dumdum=0x7f090014;
+        public static final int description=0x7f090022;
+        public static final int dumdum=0x7f090015;
         public static final int horizontalbar=0x7f090001;
-        public static final int imageView1=0x7f09001c;
+        public static final int imageView1=0x7f09001d;
         public static final int labelDate=0x7f09000a;
         public static final int labelGroup=0x7f090004;
         public static final int labelPeople=0x7f09000e;
-        public static final int labelPeoples=0x7f090023;
-        public static final int labelRemainders=0x7f090024;
+        public static final int labelPeoples=0x7f090024;
+        public static final int labelRemainders=0x7f090025;
         public static final int labelTask=0x7f090007;
-        public static final int logo=0x7f090016;
-        public static final int menu_add=0x7f09002b;
-        public static final int menu_refresh=0x7f09002a;
-        public static final int pager=0x7f09001a;
-        public static final int pager_title_strip=0x7f09001b;
-        public static final int section_label=0x7f090015;
+        public static final int logo=0x7f090017;
+        public static final int menu_add=0x7f09002d;
+        public static final int menu_refresh=0x7f09002c;
+        public static final int pager=0x7f09001b;
+        public static final int pager_title_strip=0x7f09001c;
+        public static final int section_label=0x7f090016;
         public static final int sp=0x7f090005;
         public static final int spin=0x7f090006;
-        public static final int taskDetailsGroup=0x7f090022;
-        public static final int taskDetailsHorizontalbar=0x7f090020;
-        public static final int taskDetailsName=0x7f09001d;
-        public static final int taskDetailsTime=0x7f09001e;
+        public static final int spinpeeps=0x7f090010;
+        public static final int taskDetailsGroup=0x7f090020;
+        public static final int taskDetailsHorizontalbar=0x7f090023;
+        public static final int taskDetailsHorizontalbar0=0x7f090021;
+        public static final int taskDetailsName=0x7f09001e;
+        public static final int taskDetailsTime=0x7f09001f;
         public static final int taskFragment=0x7f090002;
-        public static final int taskGroup=0x7f090019;
-        public static final int taskGroupLabel=0x7f090021;
-        public static final int taskName=0x7f090017;
+        public static final int taskFragmentMain=0x7f09002a;
+        public static final int taskGroup=0x7f09001a;
+        public static final int taskName=0x7f090018;
         public static final int taskPeople=0x7f09000f;
         public static final int taskPrototypes=0x7f090009;
         public static final int taskPrototypesView=0x7f090008;
-        public static final int taskTime=0x7f090018;
+        public static final int taskTime=0x7f090019;
         public static final int timeDate=0x7f09000b;
         public static final int timepick=0x7f09000d;
-        public static final int toggleButton=0x7f090028;
-        public static final int toggleButton2=0x7f090025;
-        public static final int toggleButton3=0x7f090026;
+        public static final int toggleButton=0x7f090029;
+        public static final int toggleButton2=0x7f090026;
+        public static final int toggleButton3=0x7f090027;
     }
     public static final class layout {
         public static final int activity_calendar=0x7f030000;
@@ -99,6 +102,7 @@ public final class R {
         public static final int main_fragment=0x7f030008;
         public static final int task_fragment=0x7f030009;
         public static final int taskdetailsact=0x7f03000a;
+        public static final int taskholderlayout=0x7f03000b;
     }
     public static final class menu {
         public static final int calendar=0x7f080000;

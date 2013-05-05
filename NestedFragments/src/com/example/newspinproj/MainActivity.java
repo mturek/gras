@@ -37,12 +37,21 @@ public class MainActivity extends FragmentActivity implements
 		@SuppressWarnings("unused")
 		DataContainer dataContainer = new DataContainer();
 		
-		
 		tabFragment = new TabFragment();
 		getSupportFragmentManager().beginTransaction()
 				.add(R.id.container, tabFragment).commit();
 		
 		this.firstData();
+		
+
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(false);
@@ -110,7 +119,8 @@ public class MainActivity extends FragmentActivity implements
 		 * .replace(R.id.container, fragment).commit(); return true;
 		 */
 		curgroup = "" + position;
-		tabFragment.changeData("Current group: " + position);
+		String[] groups = new String[] {"All groups", "No6", "SH", "789", "Life"};
+		tabFragment.changeData(groups[position]);
 		return true;
 	}
 

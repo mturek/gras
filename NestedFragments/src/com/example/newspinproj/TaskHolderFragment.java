@@ -1,6 +1,5 @@
 package com.example.newspinproj;
 
-//import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -8,11 +7,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.CalendarView.OnDateChangeListener;
-import android.widget.Toast;
 
-public class CalendarFragment extends Fragment {
+public class TaskHolderFragment extends Fragment {
 	private View view = null;
 
 	@Override
@@ -22,10 +18,7 @@ public class CalendarFragment extends Fragment {
 		// this is really important in order to save the state across screen
 		// configuration changes for example
 		// setRetainInstance(true);
-
-		CalendarView cal = (CalendarView) getView().findViewById(
-				R.id.calendarview);
-
+		
 		Fragment newFragment = new TaskFragment();
 		
 		//Bundle args = new Bundle();
@@ -37,58 +30,34 @@ public class CalendarFragment extends Fragment {
 		// Replace whatever is in the fragment_container view with this fragment,
 		// and add the transaction to the back stack so the user can navigate back
 		//transaction.remove(findFragmentById(R.id.taskFragment));
-		transaction.add(R.id.taskFragment, newFragment);
+		transaction.add(R.id.taskFragmentMain, newFragment);
 		//transaction.addToBackStack(null);
 
 		// Commit the transaction
 		transaction.commit();
-		
-		
-		
-		
-		
-		
-		cal.setOnDateChangeListener(new OnDateChangeListener() {
-
-			@Override
-			public void onSelectedDayChange(CalendarView view, int year,
-					int month, int dayOfMonth) {
-				// TODO Auto-generated method stub
-
-				/*Toast.makeText(
-						getActivity().getBaseContext(),
-						"Selected Date is\n\n" + dayOfMonth + " : " + month
-								+ " : " + year, Toast.LENGTH_LONG).show();*/
-				
-				
-				// Create fragment and give it an argument specifying the article it should show
-				//TaskFragment newFragment = new TaskFragment();
-				Fragment newFragment = new TaskFragment();
-				
-				Bundle args = new Bundle();
-				args.putString("date", ""+dayOfMonth+"/"+(month+1)+"/"+year);
-				newFragment.setArguments(args);
-
-				FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-
-				// Replace whatever is in the fragment_container view with this fragment,
-				// and add the transaction to the back stack so the user can navigate back
-				//transaction.remove(findFragmentById(R.id.taskFragment));
-				transaction.replace(R.id.taskFragment, newFragment);
-				//transaction.addToBackStack(null);
-
-				// Commit the transaction
-				transaction.commit();
-				
-			}
-		});
 	}
 
+	public void changeData(String data) {
+		Fragment newFragment = new TaskFragment();
+		
+		Bundle args = new Bundle();
+		args.putString("group", data);
+		newFragment.setArguments(args);
+
+		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+		
+		transaction.replace(R.id.taskFragmentMain, newFragment);
+		//transaction.addToBackStack(null);
+
+		// Commit the transaction
+		transaction.commit();
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		if (view == null)
-			view = inflater.inflate(R.layout.activity_calendar, container,
+			view = inflater.inflate(R.layout.taskholderlayout, container,
 					false);
 
 		return view;

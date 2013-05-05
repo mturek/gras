@@ -17,6 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/contactImage"
         android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:text="@string/defaultContactName" />
 
     <TextView

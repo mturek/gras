@@ -66,12 +66,12 @@ public class Task {
 		return protoid;
 	}
 
-	public CharSequence getTime() {
+	public String getTime() {
 		return date;
 		
 	}
 
-	public CharSequence getGroup() {
+	public String getGroup() {
 		return group;
 	}
 }

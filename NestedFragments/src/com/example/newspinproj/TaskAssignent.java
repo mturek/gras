@@ -1,7 +1,5 @@
 package com.example.newspinproj;
 
-
-
 import Model.Task;
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -19,6 +17,12 @@ import android.widget.Spinner;
 
 public class TaskAssignent extends Activity {
 
+	private String name;
+	private String group;
+	private String user;
+	private String datetime;
+	private RadioGroup radioGroup;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,12 +31,14 @@ public class TaskAssignent extends Activity {
 		Bundle grname = iin.getBundleExtra("groupinfo");
 		String gr = (String) grname.get("group");
 		System.out.println(gr);
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		int spinindex = Integer.parseInt(gr);
 
 		final Spinner groupspin = (Spinner) findViewById(R.id.spin);
+		final Spinner peoplespin = (Spinner) findViewById(R.id.spinpeeps);
+		
 
 		groupspin.setSelection(spinindex, false);
 
@@ -47,11 +53,17 @@ public class TaskAssignent extends Activity {
 		final RadioGroup rg = new RadioGroup(getApplicationContext()); // create
 																		// the
 																		// RadioGroup
+		
+		radioGroup = rg;
 		rg.setOrientation(LinearLayout.HORIZONTAL);// or RadioGroup.VERTICAL
-		
-		int[] statesUnchecked = new int[] {R.drawable.cleanup, R.drawable.dishes, R.drawable.pet, R.drawable.plants, R.drawable.trash};
-		int[] statesChecked = new int[] {R.drawable.cleanup_selected, R.drawable.dishes_selected, R.drawable.pet_selected, R.drawable.plants_selected, R.drawable.trash_selected};
-		
+
+		int[] statesUnchecked = new int[] { R.drawable.cleanup,
+				R.drawable.dishes, R.drawable.pet, R.drawable.plants,
+				R.drawable.trash };
+		int[] statesChecked = new int[] { R.drawable.cleanup_selected,
+				R.drawable.dishes_selected, R.drawable.pet_selected,
+				R.drawable.plants_selected, R.drawable.trash_selected };
+
 		for (int i = 0; i < 5; i++) {
 			rb[i] = new RadioButton(getApplicationContext());
 			// rb[i].setButtonDrawable(R.drawable.trash_selector);
@@ -82,15 +94,26 @@ public class TaskAssignent extends Activity {
 		Button createButton = (Button) findViewById(R.id.buttonCreate);
 
 		final Button dateButton = (Button) findViewById(R.id.datepick);
-		Button timeButton = (Button) findViewById(R.id.timepick);
+		final Button timeButton = (Button) findViewById(R.id.timepick);
 
 		createButton.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View view) {
+				group = (String) groupspin.getSelectedItem();
+				user = (String) peoplespin.getSelectedItem();
+				String date = dateButton.getText().toString();
+				String time = timeButton.getText().toString();
+				datetime = date + "%20" + time;
+				//int selectedId = radioGroup.getCheckedRadioButtonId();
+				
+				int selectedId = radioGroup.indexOfChild(findViewById(radioGroup.getCheckedRadioButtonId()));
+				
+				System.out.println("Checked radio: " + selectedId);
+				String[] tasknames = {"Clean-up", "Dish%20duty", "Feed%20the%20pets",
+						"Water%20the%20plants", "Take%20out%20the%20trash"};
 				final int spin = 3;
-				Task freshtask = new Task(spin, "Clean-up", dateButton
-						.getText().toString(), "Niki", "SH");
+				Task freshtask = new Task(spin, tasknames[selectedId],
+						datetime, user, group);
 				freshtask.SendToServer();
 				Intent intent = new Intent(TaskAssignent.this,
 						MainActivity.class);
@@ -108,22 +131,22 @@ public class TaskAssignent extends Activity {
 
 		return true;
 	}
-	
+
 	@Override
-	  public boolean onOptionsItemSelected(MenuItem item) {   
-		  switch (item.getItemId()) {        
-		  case android.R.id.home:           
-			  // This is called when the Home (Up) button is pressed           
-			  // in the Action Bar.           
-			  Intent parentActivityIntent = new Intent(this, MainActivity.class);           
-			  parentActivityIntent.addFlags(                   
-					  Intent.FLAG_ACTIVITY_CLEAR_TOP |              
-					  Intent.FLAG_ACTIVITY_NEW_TASK);         
-			  startActivity(parentActivityIntent);            
-		  finish();           
-		  return true;    }   
-	  return super.onOptionsItemSelected(item);
-	  }
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This is called when the Home (Up) button is pressed
+			// in the Action Bar.
+			Intent parentActivityIntent = new Intent(this, MainActivity.class);
+			parentActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+					| Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(parentActivityIntent);
+			finish();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	public void showTimePickerDialog(View v) {
 		DialogFragment newFragment = new TimePickerFragment();

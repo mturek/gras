@@ -20,116 +20,148 @@ import android.widget.Toast;
 
 public class TaskFragment extends ListFragment {
 	private View view = null;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// this is really important in order to save the state across screen
-        // configuration changes for example
-        //setRetainInstance(true);
-		
-		/*Task[] values = new Task[12];
-		values[0] = new Task("Dish duty", "29/04 13:00", "No. 6");
-		values[1] = new Task("Take out the trash", "29/04 15:30", "No. 6");
-		values[2] = new Task("Finish the proposal", "29/04 17:00", "GrAs");
-		values[3] = new Task("Water the plants", "30/04 15:30", "No. 6");
-		values[4] = new Task("Dish duty", "30/04 18:30", "SH");
-		values[5] = new Task("Take out the trash", "01/05 19:45", "No. 6");
-		values[6] = new Task("Print the poster", "02/05 19:00", "GrAs");
-		values[7] = new Task("Water the plants", "07/05 8:00", "No. 6");
-		values[8] = new Task("Feed the pets", "09/05 14:00", "Family");
-		values[9] = new Task("Dish duty", "15/05 19:50", "No. 6");
-		values[10] = new Task("Water the plants", "02/06 13:15", "No. 6");
-		values[11] = new Task("Take out the trash", "05/06 22:00", "No. 6");*/
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// configuration changes for example
+		// setRetainInstance(true);
+
+		/*
+		 * Task[] values = new Task[12]; values[0] = new Task("Dish duty",
+		 * "29/04 13:00", "No. 6"); values[1] = new Task("Take out the trash",
+		 * "29/04 15:30", "No. 6"); values[2] = new Task("Finish the proposal",
+		 * "29/04 17:00", "GrAs"); values[3] = new Task("Water the plants",
+		 * "30/04 15:30", "No. 6"); values[4] = new Task("Dish duty",
+		 * "30/04 18:30", "SH"); values[5] = new Task("Take out the trash",
+		 * "01/05 19:45", "No. 6"); values[6] = new Task("Print the poster",
+		 * "02/05 19:00", "GrAs"); values[7] = new Task("Water the plants",
+		 * "07/05 8:00", "No. 6"); values[8] = new Task("Feed the pets",
+		 * "09/05 14:00", "Family"); values[9] = new Task("Dish duty",
+		 * "15/05 19:50", "No. 6"); values[10] = new Task("Water the plants",
+		 * "02/06 13:15", "No. 6"); values[11] = new Task("Take out the trash",
+		 * "05/06 22:00", "No. 6");
+		 */
+		/*
+		 * try { //Thread.sleep(1000); } catch (InterruptedException e) { //
+		 * TODO Auto-generated catch block e.printStackTrace(); }
+		 */
+
+		ArrayList<Task> copy;
+		Bundle bundle = getArguments();
+		if (bundle == null) {
+			copy = DataContainer.getTasks();
+
+			if (copy == null) {
+				copy = new ArrayList<Task>();
+			}
+		} else {
+			String date = bundle.getString("date");
+			String group = bundle.getString("group");
+			
+			if(date != null && group != null) {
+				copy = DataContainer.getTasksbyGroupandDay(group, date);
+			} else if (date != null) {
+				copy = DataContainer.getListByDay(date);
+			} else if (group != null) {
+				copy = DataContainer.getTasksByGroup(group);
+			} else {
+				copy = new ArrayList<Task>();
+			}
 		}
 
-		ArrayList<Task> copy = DataContainer.getTasks();
-		if(copy == null){
-			copy = new ArrayList<Task>();
-		}
-		ArrayList<Task> values =  new ArrayList<Task>(copy);
+		ArrayList<Task> values = new ArrayList<Task>(copy);
+
 		System.out.println(values.toString());
 		setListAdapter(new MobileArrayAdapter(this.getActivity(), values));
 
 	}
-	
-	static TaskFragment newInstance(int num) {            
-		TaskFragment f = new TaskFragment();            
-		// Supply num input as an argument.           
-		Bundle args = new Bundle();            
-		args.putInt("num", num);           
-		f.setArguments(args);           
-		return f;        
-		}
-	
+
+	static TaskFragment newInstance(int num) {
+		TaskFragment f = new TaskFragment();
+		// Supply num input as an argument.
+		Bundle args = new Bundle();
+		args.putInt("num", num);
+		f.setArguments(args);
+		return f;
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		
-		if (true || view == null) 
+
+		if (true || view == null)
 			view = inflater.inflate(R.layout.task_fragment, container, false);
-		
+
 		return view;
 	}
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		
+
 		// get selected items
+		/*
+		 * String selectedValue = ((Task) getListAdapter().getItem(position))
+		 * .getname();
+		 */
+		// Toast.makeText(this.getActivity(), selectedValue,
+		// Toast.LENGTH_SHORT).show();
+
 		String selectedValue = ((Task) getListAdapter().getItem(position))
 				.getname();
-		Toast.makeText(this.getActivity(), selectedValue, Toast.LENGTH_SHORT).show();
+		String selectedTime = (String) ((Task) getListAdapter().getItem(
+				position)).getTime();
+		String selectedgroup = (String) ((Task) getListAdapter().getItem(
+				position)).getGroup();
+		String selectedmem = ((Task) getListAdapter().getItem(position))
+				.getuser();
+
+		//
+
 		Intent i = new Intent(getActivity(), TaskDetailsActivity.class);
-        startActivity(i);
+		i.putExtra("taskname", selectedValue);
+		i.putExtra("tasktime", selectedTime);
+		i.putExtra("taskgroup", selectedgroup);
+		i.putExtra("people", selectedmem);
+		startActivity(i);
 
 	}
-	
+
 	@Override
 	public void onDestroyView() {
-		//super.onDestroyView();
+		// super.onDestroyView();
 		ViewGroup parentViewGroup = (ViewGroup) view.getParent();
 		if (null != parentViewGroup) {
 			parentViewGroup.removeView(view);
 			// view=null;
 		}
-		
+
 		super.onDestroyView();
 	}
-	
+
 	/*
-	@Override
-	public void onAttach(Activity activity) {
-	    super.onAttach(activity);
+	 * @Override public void onAttach(Activity activity) {
+	 * super.onAttach(activity);
+	 * 
+	 * Toast.makeText(activity.getApplicationContext(),
+	 * String.valueOf(this.getId()), Toast.LENGTH_SHORT).show();
+	 * 
+	 * }
+	 */
 
-	    Toast.makeText(activity.getApplicationContext(), String.valueOf(this.getId()), Toast.LENGTH_SHORT).show();
-
-	}*/
-	
 	/*
-	@Override
-	public void onStop() {
-		super.onStop();
-		System.out.println("Tasks stopped");
-	}
-	
-	@Override
-	public void onPause() {
-		super.onStop();
-		System.out.println("Tasks paused");
-	}
-	
-	@Override
-	public void onResume() {
-		System.out.println("Tasks resumed");
-
-		super.onResume();
-	}*/
+	 * @Override public void onStop() { super.onStop();
+	 * System.out.println("Tasks stopped"); }
+	 * 
+	 * @Override public void onPause() { super.onStop();
+	 * System.out.println("Tasks paused"); }
+	 * 
+	 * @Override public void onResume() { System.out.println("Tasks resumed");
+	 * 
+	 * super.onResume(); }
+	 */
 
 	private class MobileArrayAdapter extends ArrayAdapter<Task> {
 		private final Context context;
@@ -143,7 +175,7 @@ public class TaskFragment extends ListFragment {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-		//	System.out.println("got a value set");
+			// System.out.println("got a value set");
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -168,7 +200,7 @@ public class TaskFragment extends ListFragment {
 			// Change icon based on name
 			String s = values.get(position).getname();
 
-			//System.out.println(s);
+			// System.out.println(s);
 
 			if (s.equals("Take out the trash")) {
 				imageView.setImageResource(R.drawable.trash);

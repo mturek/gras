@@ -37,7 +37,25 @@
         android:text="@string/defaultTaskTime"
         android:textSize="15sp"
         android:textStyle="italic" />
+    
+     <TextView
+        android:id="@+id/taskDetailsGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/taskDetailsTime"
+        android:text="@string/taskDetailsGroupLabel"
+        android:textSize="15sp" />
 
+    <View
+        android:id="@+id/taskDetailsHorizontalbar0"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/imageView1"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/darker_gray" />
+    
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
@@ -55,7 +73,7 @@
         android:layout_marginTop="2dp"
         android:background="@android:color/darker_gray" />
 
-     <TextView
+      <!--<TextView
         android:id="@+id/taskGroupLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,15 +90,16 @@
         android:layout_below="@id/taskDetailsHorizontalbar"
         android:layout_toRightOf="@id/taskGroupLabel"
         android:text="@string/taskDetailsGroupLabel"
-        android:textSize="15sp" />
+        android:textSize="15sp" /> -->
 
     <TextView
         android:id="@+id/labelPeoples"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/taskDetailsGroup"
+        android:layout_below="@id/taskDetailsHorizontalbar"
         android:layout_alignParentLeft="true"
         android:textSize="15sp"
+        android:layout_marginBottom="5dp"
         android:textStyle="bold" 
         android:text="@string/labelPeoples" />
 
