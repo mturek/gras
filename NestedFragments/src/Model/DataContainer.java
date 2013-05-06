@@ -7,6 +7,7 @@ public class DataContainer {
 	static ArrayList<User> users;
 	static ArrayList<TaskProto> taskprotos;
 	static ArrayList<Task> tasks;
+	static ArrayList<Group> groups;
 
 	public DataContainer() {
 		users = new ArrayList<User>();
@@ -14,6 +15,19 @@ public class DataContainer {
 		tasks = new ArrayList<Task>();
 	}
 
+	public static void recieveMessage(String returnstring){
+		String[] breakcommand = returnstring.split("COMMANDEND");
+		if(breakcommand[0].equals("tasklist")){
+			DataContainer.recieveTaskList(breakcommand[1]);
+		}
+		else if(breakcommand[0].equals("groupinfo")){
+			String[] breakname = breakcommand[1].split("GNAME");
+			DataContainer.recieveGroupInfo(breakname[0], breakname[1]);
+		}
+		
+	}
+	
+	
 	public static void recieveTaskList(String tl) {
 		String[] first = tl.split("\\|");
 		for (int i = 0; i < first.length; i++) {
@@ -43,6 +57,47 @@ public class DataContainer {
 		}
 
 		System.out.println(tasks.size());
+	}
+	
+	public static boolean userExists(String username){
+		for(int i = 0; i < DataContainer.users.size(); i++){
+			if(DataContainer.users.get(i).getname() == username);
+			return true;
+		}
+		return false;
+	}
+	public static void recieveGroupInfo(String ginfo, String gname) {
+		String[] parts1 = ginfo.split("LEADERS:");
+		String[] parts2 = parts1[0].split("\\|");
+		String[] parts3 = parts1[1].split("\\|");
+
+		ArrayList<User> groupusers = new ArrayList<User>();
+		ArrayList<User> groupleaders = new ArrayList<User>();
+
+		for(int i = 0; i < parts2.length; i++){
+			String[] userparts = parts2[i].split(",");
+			if(userparts.length == 4){
+				User newuser = new User(userparts[0], userparts[1], userparts[2], Integer.parseInt(userparts[3]));
+				DataContainer.addUser(newuser);
+			}
+			else{
+				System.out.print("ERROR");
+			}
+		}
+		for(int i = 0; i < parts3.length; i++){
+			String[] userparts = parts3[i].split(",");
+			if(userparts.length == 4){
+				User newuser = new User(userparts[0], userparts[1], userparts[2], Integer.parseInt(userparts[3]));
+				DataContainer.addUser(newuser);
+			}
+			else{
+				System.out.print("ERROR");
+			}
+		}
+		
+		Group newgroup = new Group(gname, groupusers, groupleaders);
+		DataContainer.groups.add(newgroup);
+		
 	}
 
 	public static ArrayList<Task> getTasksByUname(String uname) {
@@ -87,6 +142,9 @@ public class DataContainer {
 
 	public static ArrayList<Task> getTasksByGroup(String group) {
 		ArrayList<Task> ret = new ArrayList<Task>();
+		if(group.equals("All groups")){
+			return DataContainer.tasks;
+		}
 		for (Task t : tasks) {
 			if (t.getGroup().equals(group)) {
 				ret.add(t);

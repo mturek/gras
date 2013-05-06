@@ -6,21 +6,20 @@ public class Group {
 	private String name;
 	private ArrayList<User> users;
 	private ArrayList<User> leaders;
-	private ArrayList<Task> tasks;
 	
 	public Group(){
 		name = "";
 		users = new ArrayList<User>();
 		leaders = new ArrayList<User>();
-		tasks = new ArrayList<Task>();
 	}
 	
-	public Group(ArrayList<User> use, ArrayList<User> lead, ArrayList<Task> task){
+	public Group(String name, ArrayList<User> use, ArrayList<User> lead){
+		this.name = name;
 		users = use;
 		leaders = lead;
-		tasks = task;
 	}
 	
+
 	public ArrayList<User> getUsers(){
 		return users;
 	}
@@ -28,8 +27,5 @@ public class Group {
 	public ArrayList<User> getLeaders(){
 		return leaders;
 	}
-		
-	public ArrayList<Task> getTasks(){
-		return tasks;
-	}
+	
 }

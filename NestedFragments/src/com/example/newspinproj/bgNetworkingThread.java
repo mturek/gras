@@ -40,7 +40,7 @@ public class bgNetworkingThread extends AsyncTask<String, Integer, String>{
             
             String stuff = stringBuilder.toString();
 	        //System.out.println(stuff);
-	        DataContainer.recieveTaskList(stuff);
+	        DataContainer.recieveMessage(stuff);
 	        return stringBuilder.toString();
 	        
 	    } catch (URISyntaxException e) {
