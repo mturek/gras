@@ -47,7 +47,10 @@ public class TaskHolderFragment extends Fragment {
 		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 		
 		transaction.replace(R.id.taskFragmentMain, newFragment);
-		//transaction.addToBackStack(null);
+		
+		
+		//Backstack - comment out if crashes
+		transaction.addToBackStack(null);
 
 		// Commit the transaction
 		transaction.commit();

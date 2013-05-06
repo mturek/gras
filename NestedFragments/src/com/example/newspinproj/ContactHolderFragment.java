@@ -47,7 +47,9 @@ public class ContactHolderFragment extends Fragment {
 		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 		
 		transaction.replace(R.id.contactsFragmentMain, newFragment);
-		//transaction.addToBackStack(null);
+		
+		// Backstack - comment out if crashes
+		transaction.addToBackStack(null);
 
 		// Commit the transaction
 		transaction.commit();

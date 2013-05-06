@@ -16,6 +16,7 @@ import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class ContactsFragment extends ListFragment {
 	private View view = null;
 	//public static final String[] members = {"Niki Edmonds", "Alexander Mitkas", "Alvaro Morales",
 		//	"Yoana Gyurova", "Android" };
-	
+	private String groupName;
 
 	@Override
 	public void onStart() {
@@ -41,6 +42,7 @@ public class ContactsFragment extends ListFragment {
 		Bundle bundle = getArguments();
 		if (bundle == null) {
 			copy = DataContainer.getFullnames("All groups");
+			groupName = "All groups";
 
 			if (copy == null) {
 				copy = new ArrayList<String>();
@@ -50,8 +52,10 @@ public class ContactsFragment extends ListFragment {
 			
 			if (group != null) {
 				copy = DataContainer.getFullnames(group);
+				groupName = group;
 			} else {
 				copy = new ArrayList<String>();
+				groupName = "All groups";
 			}
 		}
 
@@ -175,6 +179,12 @@ public class ContactsFragment extends ListFragment {
 			badgeSmall.setMode(ContactsContract.QuickContact.MODE_MEDIUM);
 			InputStream input = ContactsContract.Contacts.openContactPhotoInputStream(getActivity().getContentResolver(), contactUri);
 			badgeSmall.setImageBitmap(BitmapFactory.decodeStream(input));
+			
+			
+			//Boolean isLeader = DataContainer.getFullnamesLeaders(groupName).contains(name);
+			Boolean isLeader = name.startsWith("M");
+			ImageView leaderIcon = (ImageView) view.findViewById(R.id.leader_icon);
+			leaderIcon.setVisibility(isLeader ? View.VISIBLE : View.INVISIBLE);
 			
 			tv1.setText(name);
 			tv2.setText(phoneNumber);
