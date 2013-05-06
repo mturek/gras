@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <Button 
-	    android:layout_width="wrap_content" 
-	    android:layout_height="wrap_content"
-	    android:text="helelele" 
-	    android:onClick="showDatePickerDialog"
-	    android:id="@+id/dumdum"  />
+    android:gravity="center"
+    android:orientation="vertical" 
+    android:padding="5dp"
+    >
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/gras_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/gras_logo_alttext"
+        android:src="@drawable/ic_launcher" />
+    
+    <View 
+        android:id="@+id/spacer1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="20dp"
+	    android:layout_below="@id/gras_logo"/>
+
+    <TextView
+        android:id="@+id/username_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spacer1"
+        android:text="@string/username_label"
+        android:textIsSelectable="false"
+                android:layout_marginRight="10dp"
+        
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username_label"
+		android:layout_marginTop="0dp"
+        
+        android:inputType="text" />
+	
+	
+    <TextView
+        android:id="@+id/password_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password_label"
+    	android:layout_below="@id/username"
+        android:textIsSelectable="false"
+        
+        android:textSize="15sp" />
+
+	
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_label"
+                android:layout_marginTop="0dp"
+        
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/dumdum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_centerHorizontal="true"
+        android:text="@string/login_button" />
+
+</RelativeLayout>
