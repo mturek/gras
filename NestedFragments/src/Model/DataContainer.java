@@ -158,6 +158,7 @@ public class DataContainer {
 	public static ArrayList<Task> getTasksByGroup(String group) {
 		ArrayList<Task> ret = new ArrayList<Task>();
 		if(group.equals("All groups")){
+			System.out.println("We are in allgroups");
 			return DataContainer.tasks;
 		}
 		for (Task t : tasks) {

@@ -51,12 +51,12 @@
          <item>Select group</item>
         <item>No6</item>
         <item>SH</item>
-        <item>789</item>
+        <item>21W789</item>
         <item>Life</item>
     </string-array>
     
      <string-array name="people_array">
-         <item>Select Person</item>
+        <item>Select Person</item>
         <item>Niki</item>
         <item>Michael</item>
         <item>Alvaro</item>

@@ -34,7 +34,21 @@ public class Group {
 	public ArrayList<String> getFullnames(){
 		ArrayList<String> fullnames = new ArrayList<String>();
 		for(User user : getUsers()) fullnames.add(user.getFullname());
+		for(User user : getLeaders()) fullnames.add(user.getFullname());
 		return fullnames;
 	}
+	
+	public ArrayList<String> getFullUsernames(){
+		ArrayList<String> fullnames = new ArrayList<String>();
+		for(User user : getUsers()) fullnames.add(user.getFullname());
+		return fullnames;
+	}
+	
+	public ArrayList<String> getFullLeaderNames(){
+		ArrayList<String> fullnames = new ArrayList<String>();
+		for(User user : getLeaders()) fullnames.add(user.getFullname());
+		return fullnames;
+	}
+	
 	
 }
