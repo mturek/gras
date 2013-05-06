@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Dummy extends Activity {
+public class Login extends Activity {
 
 	/** Called when the activity is first created. */
 	@Override
@@ -21,10 +21,10 @@ public class Dummy extends Activity {
 
 	      @Override
 	      public void onClick(View view) {
-	        Intent intent = new Intent(Dummy.this, TaskAssignent.class);
+	        Intent intent = new Intent(Login.this, MainActivity.class);
 	        Bundle bundle = new Bundle();
-	        bundle.putString("group", "SH");
-	        intent.putExtra("groupinfo", bundle);
+	        bundle.putString("uname", "Michael");
+	        intent.putExtra("unamestuff", bundle);
 	        startActivity(intent);
 	      }
 

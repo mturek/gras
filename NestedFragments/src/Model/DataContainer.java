@@ -18,7 +18,12 @@ public class DataContainer {
 	public static void recieveMessage(String returnstring){
 		String[] breakcommand = returnstring.split("COMMANDEND");
 		if(breakcommand[0].equals("tasklist")){
-			DataContainer.recieveTaskList(breakcommand[1]);
+			if(breakcommand.length == 1){
+				
+			}
+			else{
+				DataContainer.recieveTaskList(breakcommand[1]);
+			}
 		}
 		else if(breakcommand[0].equals("groupinfo")){
 			String[] breakname = breakcommand[1].split("GNAME");
