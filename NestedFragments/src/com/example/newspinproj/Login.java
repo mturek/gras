@@ -22,9 +22,9 @@ public class Login extends Activity {
 	      @Override
 	      public void onClick(View view) {
 	        Intent intent = new Intent(Login.this, MainActivity.class);
-//	        Bundle bundle = new Bundle();
-//	        bundle.putString("group", "SH");
-//	        intent.putExtra("groupinfo", bundle);
+	        Bundle bundle = new Bundle();
+	        bundle.putString("uname", "Michael");
+	        intent.putExtra("unamestuff", bundle);
 	        startActivity(intent);
 	      }
 

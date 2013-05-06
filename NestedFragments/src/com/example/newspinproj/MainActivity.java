@@ -37,11 +37,14 @@ public class MainActivity extends FragmentActivity implements
 		@SuppressWarnings("unused")
 		DataContainer dataContainer = new DataContainer();
 		
+		Bundle bundle = this.getIntent().getBundleExtra("unamestuff");
+		String uname = bundle.getString("uname");
+		System.out.println(uname);
 		tabFragment = new TabFragment();
 		getSupportFragmentManager().beginTransaction()
 				.add(R.id.container, tabFragment).commit();
 		
-		this.firstData();
+		this.firstData(uname);
 		
 
 		try {
@@ -150,8 +153,8 @@ public class MainActivity extends FragmentActivity implements
         startActivity(intent);
 	}
 	
-	private void firstData(){
-		User u = new User("Niki", "mary", "sally", 234);
+	private void firstData(String uname){
+		User u = new User(uname, "hihi", "hihi", 0);
 		u.getTasks();
 	}
 	
