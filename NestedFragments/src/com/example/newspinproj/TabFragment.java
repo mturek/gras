@@ -102,7 +102,7 @@ public class TabFragment extends Fragment {
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 		Fragment calendarFragment;
 		Fragment taskHolderFragment;
-		Fragment contactsFragment;
+		Fragment contactHolderFragment;
 		ViewPager mViewPager = null;
 		
 		public SectionsPagerAdapter(FragmentManager fm, boolean allCal) {
@@ -110,7 +110,7 @@ public class TabFragment extends Fragment {
 			
 			calendarFragment = new CalendarFragment();
 			taskHolderFragment = new TaskHolderFragment();
-			contactsFragment = new ContactsFragment();
+			contactHolderFragment = new ContactHolderFragment();
 			
 		}
 		
@@ -135,6 +135,7 @@ public class TabFragment extends Fragment {
 			
 			*/
 			((TaskHolderFragment) taskHolderFragment).changeData(data);
+			((ContactHolderFragment) contactHolderFragment).changeData(data);
 		}
 		
 		 /**
@@ -186,7 +187,7 @@ public class TabFragment extends Fragment {
 		@Override
 		public Fragment getItem(int position) {
 			if (position == 0) {
-				return contactsFragment;
+				return contactHolderFragment;
 			}
 			else if (position == 1) {
 				return taskHolderFragment; //taskFragment;

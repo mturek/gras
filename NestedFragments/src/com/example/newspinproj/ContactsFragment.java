@@ -1,7 +1,9 @@
 package com.example.newspinproj;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
+import Model.DataContainer;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -17,23 +19,56 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ContactsFragment extends ListFragment {
 	private View view = null;
-	public static final String[] members = {"Niki Edmonds", "Alexander Mitkas", "Alvaro Morales",
-			"Yoana Gyurova", "Android" };
+	//public static final String[] members = {"Niki Edmonds", "Alexander Mitkas", "Alvaro Morales",
+		//	"Yoana Gyurova", "Android" };
 	
 
 	@Override
 	public void onStart() {
 		super.onStart();
 		
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		
+		ArrayList<String> copy;
+		Bundle bundle = getArguments();
+		if (bundle == null) {
+			copy = DataContainer.getFullnames("All groups");
+
+			if (copy == null) {
+				copy = new ArrayList<String>();
+			}
+		} else {
+			String group = bundle.getString("group");
+			
+			if (group != null) {
+				copy = DataContainer.getFullnames(group);
+			} else {
+				copy = new ArrayList<String>();
+			}
+		}
+
+		ArrayList<String> members = new ArrayList<String>(copy);
+		
+		
+		
 		String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 		
 		String selection = "";
 		for(String member : members) selection += ContactsContract.Contacts.DISPLAY_NAME + "='" + member + "' OR ";
-		selection = selection.substring(0, selection.length() - 3);
+		if(selection.length() > 0) selection = selection.substring(0, selection.length() - 3);
+		
+		if(members.size() == 0) 
+			selection = ContactsContract.Contacts.DISPLAY_NAME + "= 'Blabla'";
+		
+		System.out.println("Selection: " + selection);
 		
 		//Toast.makeText(this.getActivity(), selection, Toast.LENGTH_LONG).show();
 		
@@ -47,13 +82,14 @@ public class ContactsFragment extends ListFragment {
                 ContactsContract.Data.CONTACT_ID};
 		
 		
-		Cursor cursor =getActivity().getContentResolver().query(
+		Cursor cursor = getActivity().getContentResolver().query(
 				ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection, selection,
 				null, sortOrder);
 
 		setListAdapter(new ContactListAdapter(this.getActivity(), cursor));
 		//setListAdapter(new ContactListAdapter(this, cursor));
 		// cursor.close() - before destroying
+		
 	}
 
 	@Override
@@ -82,6 +118,7 @@ public class ContactsFragment extends ListFragment {
 		//if (true || view == null) 
 		if (view == null)
 			view = inflater.inflate(R.layout.activity_contacts, container, false);
+		
 		
 		return view;
 	}

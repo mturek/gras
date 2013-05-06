@@ -19,6 +19,9 @@ public class Group {
 		leaders = lead;
 	}
 	
+	public String getName() {
+		return name;
+	}
 
 	public ArrayList<User> getUsers(){
 		return users;
@@ -26,6 +29,12 @@ public class Group {
 	
 	public ArrayList<User> getLeaders(){
 		return leaders;
+	}
+	
+	public ArrayList<String> getFullnames(){
+		ArrayList<String> fullnames = new ArrayList<String>();
+		for(User user : getUsers()) fullnames.add(user.getFullname());
+		return fullnames;
 	}
 	
 }

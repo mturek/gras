@@ -13,6 +13,12 @@ public class DataContainer {
 		users = new ArrayList<User>();
 		taskprotos = new ArrayList<TaskProto>();
 		tasks = new ArrayList<Task>();
+		
+		groups = new ArrayList<Group> ();
+		String[] groupNames = {"No6", "SH", "21W789", "Life"};
+		
+		for(String groupName : groupNames) 
+			(new UsersInGroupReq(groupName)).send();
 	}
 
 	public static void recieveMessage(String returnstring){
@@ -26,8 +32,9 @@ public class DataContainer {
 			}
 		}
 		else if(breakcommand[0].equals("groupinfo")){
+			System.out.println("Break command[1]: " + breakcommand[1]);
 			String[] breakname = breakcommand[1].split("GNAME");
-			DataContainer.recieveGroupInfo(breakname[0], breakname[1]);
+			DataContainer.recieveGroupInfo(breakname[1], breakname[0]);
 		}
 		
 	}
@@ -72,9 +79,10 @@ public class DataContainer {
 		return false;
 	}
 	public static void recieveGroupInfo(String ginfo, String gname) {
+		System.out.println("groupInfo: " + ginfo);
 		String[] parts1 = ginfo.split("LEADERS:");
-		String[] parts2 = parts1[0].split("\\|");
-		String[] parts3 = parts1[1].split("\\|");
+		String[] parts2 = parts1[0].substring(1).split("\\|");
+		String[] parts3 = parts1[1].substring(1).split("\\|");
 
 		ArrayList<User> groupusers = new ArrayList<User>();
 		ArrayList<User> groupleaders = new ArrayList<User>();
@@ -84,6 +92,7 @@ public class DataContainer {
 			if(userparts.length == 4){
 				User newuser = new User(userparts[0], userparts[1], userparts[2], Integer.parseInt(userparts[3]));
 				DataContainer.addUser(newuser);
+				groupleaders.add(newuser);
 			}
 			else{
 				System.out.print("ERROR");
@@ -94,6 +103,7 @@ public class DataContainer {
 			if(userparts.length == 4){
 				User newuser = new User(userparts[0], userparts[1], userparts[2], Integer.parseInt(userparts[3]));
 				DataContainer.addUser(newuser);
+				groupusers.add(newuser);
 			}
 			else{
 				System.out.print("ERROR");
@@ -161,10 +171,20 @@ public class DataContainer {
 	public static ArrayList<Task> getTasksbyGroupandDay(String group, String day) {
 		ArrayList<Task> ret = new ArrayList<Task>();
 		for (Task t : tasks) {
-			if (t.getGroup().equals(group) && t.getTime().contains(day)) {
+			if (t.getTime().contains(day) && (t.getGroup().equals(group) || group.equals("All groups")) ) {
 				ret.add(t);
 			}
 		}
 		return ret;
+	}
+	
+	public static ArrayList<String> getFullnames(String groupName) {
+		ArrayList<String> fullnames = new ArrayList<String>();
+		for(Group group : groups) {
+			if(groupName.equals("All groups") || group.getName().equals(groupName)) 
+				fullnames.addAll(group.getFullnames());
+		}
+		
+		return fullnames;
 	}
 }

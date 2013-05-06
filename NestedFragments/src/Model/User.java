@@ -64,4 +64,8 @@ public class User {
 		UserTasksRequest utr = new UserTasksRequest(this.uname);
 		return utr.send();
 	}
+	
+	public String getFullname(){
+		return fname+" "+lname;
+	}
 }

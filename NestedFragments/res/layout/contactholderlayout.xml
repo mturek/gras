@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    
+    >
+
+     <LinearLayout
+        android:id="@+id/contactsFragmentMain"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+         > 
+	</LinearLayout>
+	
+        <!-- fragment -->
+
+       <!--  <SlidingDrawer
+            android:id="@+id/slidingDrawer1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:content="@+id/content"
+            android:handle="@+id/handle" >
+
+           
+      android:layout_alignParentBottom="true"
+		    android:layout_below="@id/taskFragmentMain"
+            
+
+            <Button
+                android:id="@+id/handle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Handle" />
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+        </SlidingDrawer>-->
+
+</RelativeLayout>
