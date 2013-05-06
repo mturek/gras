@@ -2,7 +2,15 @@ package Model;
 
 import java.util.ArrayList;
 
+import com.example.newspinproj.HttpInterface;
+
 public class UsersInGroupReq implements ServerRequest {
+	
+	private String gname;
+	
+	public UsersInGroupReq(String gname){
+		this.gname = gname;
+	}
 
 	@Override
 	public String accept(ServerRequestVisitor v) {
@@ -11,8 +19,13 @@ public class UsersInGroupReq implements ServerRequest {
 
 	@Override
 	public String send() {
-		// TODO Auto-generated method stub
-		return null;
+		URLCreator urler = new URLCreator();
+		String req = this.accept(urler);
+		return HttpInterface.sendreq(req);
+	}
+	
+	public String getGname(){
+		return this.gname;
 	}
 
 	public ArrayList<String> getfields() {

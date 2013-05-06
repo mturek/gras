@@ -24,30 +24,7 @@ public class TaskFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// this is really important in order to save the state across screen
-		// configuration changes for example
-		// setRetainInstance(true);
-
-		/*
-		 * Task[] values = new Task[12]; values[0] = new Task("Dish duty",
-		 * "29/04 13:00", "No. 6"); values[1] = new Task("Take out the trash",
-		 * "29/04 15:30", "No. 6"); values[2] = new Task("Finish the proposal",
-		 * "29/04 17:00", "GrAs"); values[3] = new Task("Water the plants",
-		 * "30/04 15:30", "No. 6"); values[4] = new Task("Dish duty",
-		 * "30/04 18:30", "SH"); values[5] = new Task("Take out the trash",
-		 * "01/05 19:45", "No. 6"); values[6] = new Task("Print the poster",
-		 * "02/05 19:00", "GrAs"); values[7] = new Task("Water the plants",
-		 * "07/05 8:00", "No. 6"); values[8] = new Task("Feed the pets",
-		 * "09/05 14:00", "Family"); values[9] = new Task("Dish duty",
-		 * "15/05 19:50", "No. 6"); values[10] = new Task("Water the plants",
-		 * "02/06 13:15", "No. 6"); values[11] = new Task("Take out the trash",
-		 * "05/06 22:00", "No. 6");
-		 */
-		/*
-		 * try { //Thread.sleep(1000); } catch (InterruptedException e) { //
-		 * TODO Auto-generated catch block e.printStackTrace(); }
-		 */
-
+		
 		ArrayList<Task> copy;
 		Bundle bundle = getArguments();
 		if (bundle == null) {

@@ -64,7 +64,7 @@ public class URLCreator implements ServerRequestVisitor {
 
 	@Override
 	public String onUsersInGroupReq(UsersInGroupReq uig) {
-		String req = rootURL + "command=usersingroup" + generateURLpart(uig.getfields(), uig.getValues());
+		String req = rootURL + "command=getgroupinfo" + "&gname=" + uig.getGname();
 		HttpInterface.sendreq(req);
 		return req;
 	}
