@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 
-public class Task {
+public class Task implements Comparable<Task>{
 	
 	Integer utid;
 	String protoid;
@@ -58,8 +58,13 @@ public class Task {
 		taskreq.accept(urler);
 	}
 
-	public String getuser() {
-		return user1;
+	public ArrayList<String> getuser() {
+		ArrayList<String> names = new ArrayList<String>();
+		String[] users = this.user1.split(",");
+		for( String uname: users){
+			names.add(uname);
+		}
+		return names;
 	}
 	
 	public String getname(){
@@ -71,7 +76,31 @@ public class Task {
 		
 	}
 
+	public String getunfilteredunames(){
+		return user1;
+	}
 	public String getGroup() {
 		return group;
+	}
+
+	@Override
+	public int compareTo(Task another) {
+		int bigger = 0;
+		String[] datetime1 = this.date.split(" ");
+		String[] date1 = datetime1[0].split("\\/");
+		
+		String[] datetime2 = this.date.split(" ");
+		String[] date2 = datetime1[0].split("\\/");
+		
+		if(date1[2] != date2[2]){
+			return (Integer.parseInt(date1[2]) < Integer.parseInt(date2[2]) ? -1 : 1);
+		}
+		else if(date1[1] != date2[1]){
+			return (Integer.parseInt(date1[1]) < Integer.parseInt(date2[1]) ? -1 : 1);
+		}
+		else if(date1[1] != date2[1]){
+			return (Integer.parseInt(date1[0]) < Integer.parseInt(date2[0]) ? -1 : 1);
+		}
+		return 0;
 	}
 }

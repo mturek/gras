@@ -94,7 +94,7 @@ public class TaskFragment extends ListFragment {
 		String selectedgroup = (String) ((Task) getListAdapter().getItem(
 				position)).getGroup();
 		String selectedmem = ((Task) getListAdapter().getItem(position))
-				.getuser();
+				.getunfilteredunames();
 
 		//
 
