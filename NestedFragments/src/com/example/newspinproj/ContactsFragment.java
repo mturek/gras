@@ -181,8 +181,8 @@ public class ContactsFragment extends ListFragment {
 			badgeSmall.setImageBitmap(BitmapFactory.decodeStream(input));
 			
 			
-			//Boolean isLeader = DataContainer.getFullnamesLeaders(groupName).contains(name);
-			Boolean isLeader = name.startsWith("M");
+			Boolean isLeader = DataContainer.getFullLeaderNames(groupName).contains(name);
+			//Boolean isLeader = name.startsWith("M");
 			ImageView leaderIcon = (ImageView) view.findViewById(R.id.leader_icon);
 			leaderIcon.setVisibility(isLeader ? View.VISIBLE : View.INVISIBLE);
 			

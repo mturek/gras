@@ -181,9 +181,21 @@ public class DataContainer {
 	
 	public static ArrayList<String> getFullnames(String groupName) {
 		ArrayList<String> fullnames = new ArrayList<String>();
+
 		for(Group group : groups) {
 			if(groupName.equals("All groups") || group.getName().equals(groupName)) 
 				fullnames.addAll(group.getFullnames());
+		}
+		
+		return fullnames;
+	}
+	
+	public static ArrayList<String> getFullLeaderNames(String groupName) {
+		ArrayList<String> fullnames = new ArrayList<String>();
+		
+		for(Group group : groups) {
+			if(groupName.equals("All groups") || group.getName().equals(groupName)) 
+				fullnames.addAll(group.getFullLeaderNames());
 		}
 		
 		return fullnames;
