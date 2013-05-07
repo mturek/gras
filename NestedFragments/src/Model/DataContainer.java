@@ -10,11 +10,13 @@ public class DataContainer {
 	static ArrayList<TaskProto> taskprotos;
 	static ArrayList<Task> tasks;
 	static ArrayList<Group> groups;
-
+	static ArrayList<Swap> swaps;
+	
 	public DataContainer() {
 		users = new ArrayList<User>();
 		taskprotos = new ArrayList<TaskProto>();
 		tasks = new ArrayList<Task>();
+		swaps = new ArrayList<Swap>();
 
 		groups = new ArrayList<Group>();
 		String[] groupNames = { "No6", "SH", "21W789" };
@@ -36,8 +38,22 @@ public class DataContainer {
 			String[] breakname = breakcommand[1].split("GNAME");
 			DataContainer.recieveGroupInfo(breakname[1], breakname[0]);
 		}
+		else{
+			DataContainer.recieveSwaps(breakcommand[0]);
+		}
 
 	}
+
+	private static void recieveSwaps(String string) {
+		String[] first = string.split("|");
+		for( String swap : first){
+			String[] second = swap.split(",");
+			Swap newswap = new Swap(second[0], second[1], Integer.parseInt(second[2]), second[3]);
+			swaps.add(newswap);
+		}
+		
+	}
+	
 
 	public static void recieveTaskList(String tl) {
 		String[] first = tl.split("\\|");
