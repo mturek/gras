@@ -99,13 +99,13 @@ public class Task implements Comparable<Task>{
 		String[] time2 = datetime2[1].split(":");
 
 		
-		if(!date1[0].equals(date2[0])){
+		if(!date1[2].equals(date2[2])){
 			return (Integer.parseInt(date1[2]) < Integer.parseInt(date2[2]) ? -1 : 1);
 		}
 		else if(!date1[1].equals(date2[1])){
 			return (Integer.parseInt(date1[1]) < Integer.parseInt(date2[1]) ? -1 : 1);
 		}
-		else if(!date1[2].equals(time2[2])){
+		else if(!date1[0].equals(date2[0])){
 			return (Integer.parseInt(date1[0]) < Integer.parseInt(date2[0]) ? -1 : 1);
 		}
 		else if(!time1[0].equals(time2[0])){
