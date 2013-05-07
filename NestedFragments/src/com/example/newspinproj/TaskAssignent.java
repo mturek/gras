@@ -9,11 +9,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class TaskAssignent extends Activity {
 
@@ -49,7 +54,7 @@ public class TaskAssignent extends Activity {
 
 		final LinearLayout layout = (LinearLayout) findViewById(R.id.taskPrototypes);
 
-		final RadioButton[] rb = new RadioButton[5];
+		final RadioButton[] rb = new RadioButton[6];
 		final RadioGroup rg = new RadioGroup(getApplicationContext()); // create
 																		// the
 																		// RadioGroup
@@ -59,12 +64,13 @@ public class TaskAssignent extends Activity {
 
 		int[] statesUnchecked = new int[] { R.drawable.cleanup,
 				R.drawable.dishes, R.drawable.pet, R.drawable.plants,
-				R.drawable.trash };
+				R.drawable.trash, R.drawable.custom };
 		int[] statesChecked = new int[] { R.drawable.cleanup_selected,
 				R.drawable.dishes_selected, R.drawable.pet_selected,
-				R.drawable.plants_selected, R.drawable.trash_selected };
+				R.drawable.plants_selected, R.drawable.trash_selected,
+				R.drawable.custom_selected};
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 6; i++) {
 			rb[i] = new RadioButton(getApplicationContext());
 			// rb[i].setButtonDrawable(R.drawable.trash_selector);
 
@@ -95,6 +101,29 @@ public class TaskAssignent extends Activity {
 
 		final Button dateButton = (Button) findViewById(R.id.datepick);
 		final Button timeButton = (Button) findViewById(R.id.timepick);
+		
+		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() 
+	    {
+	        public void onCheckedChanged(RadioGroup group, int checkedId) {
+	            if(checkedId == 6){
+	            	final RelativeLayout layout = (RelativeLayout) findViewById(R.id.taskassign);
+	            	TextView tv1 = new TextView(layout.getContext());
+	            	tv1.setText("Description");
+	            	TextView tv2 = new TextView(layout.getContext());
+	            	tv1.setText("Name");
+	            	EditText et1 = new EditText(layout.getContext());
+	            	EditText et2 = new EditText(layout.getContext());
+	            	
+	            	RelativeLayout.LayoutParams lrparam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	            	//lrparam.alignWithParent = true;
+	            	tv1.setLayoutParams(lrparam);
+	            	//tv1.setTop(RelativeLayout.ALIGN_PARENT_BOTTOM);
+	            	layout.addView(tv1);
+	            	tv1.requestLayout();
+
+	            }
+	        }
+	    });
 
 		createButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -110,7 +139,7 @@ public class TaskAssignent extends Activity {
 				
 				System.out.println("Checked radio: " + selectedId);
 				String[] tasknames = {"Clean-up", "Dish%20duty", "Feed%20the%20pets",
-						"Water%20the%20plants", "Take%20out%20the%20trash"};
+						"Water%20the%20plants", "Take%20out%20the%20trash", "CUSTOM"};
 				final int spin = 3;
 				Task freshtask = new Task(spin, tasknames[selectedId],
 						datetime, user, group);
