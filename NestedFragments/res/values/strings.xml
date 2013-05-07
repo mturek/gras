@@ -3,6 +3,7 @@
 
     <string name="app_name">GrasApp</string>
     
+    <string name="buttonDone">Finished</string>
     <string name="gras_logo_alttext">GrAs logo</string>
     <string name="username_label">Username</string>
     <string name="password_label">Password</string>
@@ -30,7 +31,7 @@
     <string name="defaultContactNumber">(123)123 1234</string>
     <string name="taskDetailsGroupLabel">Group: </string>
     <string name="description">Description: Clean all dishes, put food in the fridge, wash sinks, clean tables</string>
-    <string name="buttonSwap">Swap Request</string>
+    <string name="buttonSwap">Request a swap</string>
     <string name="labelPeoples">People</string>
     <string name="toggle_turn_on">On</string>
       <string name="toggle_turn_off">Off</string>

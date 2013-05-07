@@ -16,6 +16,7 @@ import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
@@ -107,8 +108,8 @@ public class TaskDetailsActivity extends Activity {
 				StringBuffer result = new StringBuffer();
 				result.append("Reminder in").append(toggleButton.getText());
 
-				Toast.makeText(TaskDetailsActivity.this, result.toString(),
-						Toast.LENGTH_SHORT).show();
+				/*Toast.makeText(TaskDetailsActivity.this, result.toString(),
+						Toast.LENGTH_SHORT).show();*/
 
 			}
 
@@ -118,7 +119,15 @@ public class TaskDetailsActivity extends Activity {
 
 		// ArrayList<String> members = ;
 		Task task = DataContainer.taskbyutid(utid);
+		
+		if(task == null) System.out.println("The task by utid is null");
+		
+		System.out.println("Task is in group: " + task.getGroup());
+		
 		ArrayList<String> leaders = DataContainer.getFullLeaderNames(task.getGroup());
+		System.out.println("Leaders: " + leaders.toString());
+		
+		
 		ArrayList<String> member = task.getuser();
 		populateBadges(leaders, layout);
 
@@ -133,6 +142,10 @@ public class TaskDetailsActivity extends Activity {
 		layout.addView(verticalLine);
 		
 		populateBadges(member, layout);
+		
+		Button buttonDone = (Button) findViewById(R.id.buttonDone);
+		buttonDone.setText("Click to finish");
+		
 	}
 
 	private void populateBadges(ArrayList<String> people, LinearLayout layout) {

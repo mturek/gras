@@ -126,6 +126,8 @@
         android:id="@+id/labelRemainders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
         android:layout_below="@id/taskPrototypesView"
         android:text="@string/labelRemainders" />
 
@@ -136,8 +138,8 @@
         android:layout_below="@id/labelRemainders"
         android:layout_centerHorizontal="true"        
         
-        android:textOff="1 hour"
-        android:textOn="1 hour" />
+        android:textOff="8 am"
+        android:textOn="8 am" />
 
     <ToggleButton
         android:id="@+id/toggleButton3"
@@ -146,16 +148,10 @@
         android:layout_below="@id/labelRemainders"
         android:layout_toRightOf="@id/toggleButton2"
         android:text="ToggleButton"
-        android:textOff="1 day"
-        android:textOn="1 day " />
+        android:textOff="1 hour"
+        android:textOn="1 hour" />
 
-    <Button
-        android:id="@+id/buttonSwap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="false"
-        android:text="@string/buttonSwap" />
+  
 
     <ToggleButton
         android:id="@+id/toggleButton"
@@ -165,7 +161,23 @@
         android:layout_alignBottom="@id/toggleButton2"
         android:layout_toLeftOf="@id/toggleButton2"
         android:text="ToggleButton"
-        android:textOff="10 mins"
-        android:textOn="10 mins" />
+        android:textOff="24 hours"
+        android:textOn="24 hours" />
+    
+      <Button
+        android:id="@+id/buttonSwap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/buttonSwap" />
+      
+      <Button
+        android:id="@+id/buttonDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/buttonDone" />
 
 </RelativeLayout>
