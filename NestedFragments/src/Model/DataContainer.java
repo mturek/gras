@@ -71,6 +71,15 @@ public class DataContainer {
 		DataContainer.sortTasks();
 	}
 	
+	public static Task taskbyutid(int utid){
+		for(Task t : tasks){
+			if(t.utid == utid);
+			return t;
+		}
+		return null;
+		
+	}
+	
 	public static boolean userExists(String username){
 		for(int i = 0; i < DataContainer.users.size(); i++){
 			if(DataContainer.users.get(i).getname() == username);

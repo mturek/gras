@@ -1,7 +1,10 @@
 package com.example.newspinproj;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
+import Model.DataContainer;
+import Model.Task;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -30,6 +33,7 @@ public class TaskDetailsActivity extends Activity {
 	private String tasktime;
 	private String taskgroup;
 	private String people;
+	private int utid;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class TaskDetailsActivity extends Activity {
 		tasktime = (String) bund.get("tasktime");
 		taskgroup = (String) bund.get("taskgroup");
 		people = (String) bund.get("people");
-
+		int utid = Integer.parseInt((String) bund.getString("utid"));
 		final TextView name = (TextView) findViewById(R.id.taskDetailsName);
 		final TextView time = (TextView) findViewById(R.id.taskDetailsTime);
 		final TextView group = (TextView) findViewById(R.id.taskDetailsGroup);
@@ -113,10 +117,10 @@ public class TaskDetailsActivity extends Activity {
 		final LinearLayout layout = (LinearLayout) findViewById(R.id.taskPrototypes);
 
 		// ArrayList<String> members = ;
-
-		String[] members = { "Yoana Gyurova", "Alvaro Morales", "Niki Edmonds",
-				"Alexander Mitkas", "Angela Zhang", "Angie Nehmzow" };
-		populateBadges(members, layout);
+		Task task = DataContainer.taskbyutid(utid);
+		ArrayList<String> leaders = DataContainer.getFullLeaderNames(task.getGroup());
+		ArrayList<String> member = task.getuser();
+		populateBadges(leaders, layout);
 
 		View verticalLine = new View(getApplicationContext());
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -128,10 +132,10 @@ public class TaskDetailsActivity extends Activity {
 		
 		layout.addView(verticalLine);
 		
-		populateBadges(members, layout);
+		populateBadges(member, layout);
 	}
 
-	private void populateBadges(String[] people, LinearLayout layout) {
+	private void populateBadges(ArrayList<String> people, LinearLayout layout) {
 		// Create a cursor
 		String sortOrder = ContactsContract.Contacts.DISPLAY_NAME
 				+ " COLLATE LOCALIZED ASC";

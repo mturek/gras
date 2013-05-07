@@ -93,6 +93,8 @@ public class TaskFragment extends ListFragment {
 				position)).getTime();
 		String selectedgroup = (String) ((Task) getListAdapter().getItem(
 				position)).getGroup();
+		String selectedutid = (String) ((Task) getListAdapter().getItem(
+				position)).getutid();
 		String selectedmem = ((Task) getListAdapter().getItem(position))
 				.getunfilteredunames();
 
@@ -103,6 +105,7 @@ public class TaskFragment extends ListFragment {
 		i.putExtra("tasktime", selectedTime);
 		i.putExtra("taskgroup", selectedgroup);
 		i.putExtra("people", selectedmem);
+		i.putExtra("utid", selectedutid);
 		startActivity(i);
 
 	}
