@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="2dp"
                 android:layout_marginRight="10dp"
                 android:text="@string/labelGroup" />
 
@@ -131,9 +131,9 @@
                 android:layout_below="@id/timeDate"
                 android:text="@string/labelPeople" />
 
-            <LinearLayout
+          <!--   <LinearLayout
                 android:id="@+id/taskPeople"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/labelPeople"
                 android:orientation="horizontal" >
@@ -142,13 +142,36 @@
                     android:id="@+id/spinpeeps"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/people_array" />
+                    android:entries="@array/people_array" /> -->
                 <!-- people badges -->
-            </LinearLayout>
+            <!-- </LinearLayout> -->
+			<Spinner
+			    android:id="@+id/spinpeeps"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/people_array" 
+                    android:layout_below="@+id/taskPeople"/>
+	
+            <HorizontalScrollView
+                android:id="@id/taskPeople"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/labelPeople"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:id="@+id/taskPeopleLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <!-- faces -->
+                </LinearLayout>
+            </HorizontalScrollView>
         </RelativeLayout>
     </ScrollView>
 
-     <View
+    <View
         android:id="@id/buttonDoneLine"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -156,17 +179,14 @@
         android:layout_marginBottom="2dp"
         android:layout_marginTop="2dp"
         android:background="@android:color/darker_gray" />
-    
-   
-        <Button
-            android:id="@id/buttonCreate"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/buttonCreate" 
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            />
 
+    <Button
+        android:id="@id/buttonCreate"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/buttonCreate" />
 
 </RelativeLayout>

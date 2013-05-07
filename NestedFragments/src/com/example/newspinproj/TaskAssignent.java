@@ -1,5 +1,6 @@
 package com.example.newspinproj;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import Model.DataContainer;
@@ -7,8 +8,13 @@ import Model.Task;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.StateListDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.BaseColumns;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.QuickContactBadge;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -33,6 +40,7 @@ public class TaskAssignent extends Activity {
 	private String datetime;
 	private RadioGroup radioGroup;
 	public Activity me;
+	final private ArrayList<String> peopleAssigned = new ArrayList<String>();
 
 	public Activity getMe() {
 		return me;
@@ -46,6 +54,8 @@ public class TaskAssignent extends Activity {
 		Bundle grname = iin.getBundleExtra("groupinfo");
 		String gr = (String) grname.get("group");
 		System.out.println(gr);
+		
+		final LinearLayout layoutPeople = (LinearLayout) findViewById(R.id.taskPeopleLayout);
 
 		this.me = this;
 
@@ -69,6 +79,7 @@ public class TaskAssignent extends Activity {
 							.getFullnames((String) groupspin.getSelectedItem());
 
 					ArrayList<String> membersOnce = new ArrayList<String>();
+					membersOnce.add("Select Person");
 					for(int i = 0; i<members.size()/2; i++) {
 						membersOnce.add(members.get(i));
 					}
@@ -78,6 +89,36 @@ public class TaskAssignent extends Activity {
 							membersOnce);
 					peoplespin.setAdapter(adapter);
 
+					/*
+					 * ArrayList<String> people = new ArrayList<String>();
+					 * people.add("Niki Edmonds"); people.add("Michael Turek");
+					 * 
+					 * // layout: android.R.layout.simple_spinner_item
+					 */
+				}
+
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+		
+		peoplespin.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+		@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				if (position != 0) {
+					String fullname = (String) peoplespin.getSelectedItem();
+					ArrayList<String> fullnames = new ArrayList<String>();
+					fullnames.add(fullname);
+					peopleAssigned.add(fullname);
+					
+					populateBadges(fullnames, layoutPeople);
 					/*
 					 * ArrayList<String> people = new ArrayList<String>();
 					 * people.add("Niki Edmonds"); people.add("Michael Turek");
@@ -216,8 +257,19 @@ public class TaskAssignent extends Activity {
 			@Override
 			public void onClick(View view) {
 				group = (String) groupspin.getSelectedItem();
-				String userFullname = (String) peoplespin.getSelectedItem();
-				user = userFullname.split(" ")[0];
+				
+				String user = "";
+				if(peopleAssigned.size() > 0) {
+					user += peopleAssigned.get(0).split(" ")[0];
+				}
+				
+				if(peopleAssigned.size() > 1) {
+					for(int i = 1; i < peopleAssigned.size(); i++)
+						user += ("," + peopleAssigned.get(i).split(" ")[0]);
+				}
+				
+				/*String userFullname = (String) peoplespin.getSelectedItem();
+				user = userFullname.split(" ")[0];*/
 				
 				String date = dateButton.getText().toString();
 				String time = timeButton.getText().toString();
@@ -262,6 +314,70 @@ public class TaskAssignent extends Activity {
 		});
 	}
 
+	public void populateBadges(ArrayList<String> people, LinearLayout layout) {
+		// Create a cursor
+		String sortOrder = ContactsContract.Contacts.DISPLAY_NAME
+				+ " COLLATE LOCALIZED ASC";
+
+		String selection = "";
+		for (String member : people)
+			selection += ContactsContract.Contacts.DISPLAY_NAME + "='" + member
+					+ "' OR ";
+		if (selection.length() > 0)
+			selection = selection.substring(0, selection.length() - 3);
+
+		/*
+		 * if(members.size() == 0) selection =
+		 * ContactsContract.Contacts.DISPLAY_NAME + "= 'Blabla'";
+		 */
+
+		System.out.println("Selection in task details: " + selection);
+
+		String[] projection = new String[] { BaseColumns._ID,
+				ContactsContract.Contacts.DISPLAY_NAME,
+				ContactsContract.CommonDataKinds.Phone.NUMBER,
+				ContactsContract.Contacts.PHOTO_ID,
+				ContactsContract.Data.CONTACT_ID };
+
+		Cursor cursor = this.getContentResolver().query(
+				ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection,
+				selection, null, sortOrder);
+
+		if (cursor.moveToFirst()) {
+			do {
+				String contactId = cursor.getString(cursor
+						.getColumnIndex(ContactsContract.Data.CONTACT_ID));
+				Uri contactUri = Uri.withAppendedPath(
+						ContactsContract.Contacts.CONTENT_URI,
+						String.valueOf(contactId));
+
+				QuickContactBadge badgeSmall = new QuickContactBadge(
+						getApplicationContext());
+				badgeSmall.assignContactUri(contactUri);
+				badgeSmall.setMode(ContactsContract.QuickContact.MODE_MEDIUM);
+				InputStream input = ContactsContract.Contacts
+						.openContactPhotoInputStream(this.getContentResolver(),
+								contactUri);
+
+				if (input != null)
+					badgeSmall
+							.setImageBitmap(BitmapFactory.decodeStream(input));
+				else
+					badgeSmall.setImageToDefault();
+
+				LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+						80, 80);
+				layoutParams.rightMargin = 10;
+
+				badgeSmall.setLayoutParams(layoutParams);
+
+				layout.addView(badgeSmall);
+
+			} while (cursor.moveToNext());
+		}
+		cursor.close();
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

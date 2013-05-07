@@ -137,8 +137,8 @@ public class MainActivity extends FragmentActivity implements
 			refreshData();
 			return true;
 		case R.id.menu_add:
-			Toast.makeText(getApplicationContext(), "Create task", Toast.LENGTH_SHORT)
-					.show();
+			/*Toast.makeText(getApplicationContext(), "Create task", Toast.LENGTH_SHORT)
+					.show();*/
 			openTaskCreation();
 			return true;
 		default:

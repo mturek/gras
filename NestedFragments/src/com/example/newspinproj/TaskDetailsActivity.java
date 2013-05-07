@@ -186,7 +186,7 @@ public class TaskDetailsActivity extends Activity {
 		return utid;
 	}
 	
-	private void populateBadges(ArrayList<String> people, LinearLayout layout) {
+	public void populateBadges(ArrayList<String> people, LinearLayout layout) {
 		// Create a cursor
 		String sortOrder = ContactsContract.Contacts.DISPLAY_NAME
 				+ " COLLATE LOCALIZED ASC";
