@@ -11,4 +11,7 @@ public interface ServerRequestVisitor {
 	String onDeleteTask(DeleteTaskReq deleteTaskReq);
 	String onGroupTasksReq(GroupTasksReq grouptasksreq);
 	String onSwapRequest(SwapReq sr);
+	String onNewSwap(NewSwap ns);
+	String onDenySwap(DenySwap ds);
+	String onGetSwaps(GetSwaps gs);
 }

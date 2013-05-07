@@ -95,6 +95,33 @@ public class URLCreator implements ServerRequestVisitor {
 		HttpInterface.sendreq(req);
 		return req;
 	}
+
+
+
+	@Override
+	public String onNewSwap(NewSwap ns) {
+		String req = rootURL + "command=newSwap" + "&utid1=" + ns.utid1 + "&utid2=" + ns.utid2 + "&uname1=" + ns.uname1 + "&uname2=" + ns.uname2;
+		HttpInterface.sendreq(req);
+		return req;
+	}
+
+
+
+	@Override
+	public String onDenySwap(DenySwap ds) {
+		String req = rootURL + "command=denyswap" + "&utid1=" + ds.utid;
+		HttpInterface.sendreq(req);
+		return req;
+	}
+
+
+
+	@Override
+	public String onGetSwaps(GetSwaps gs) {
+		String req = rootURL + "command=getSwaps" + "&uname=" + gs.uname;
+		HttpInterface.sendreq(req);
+		return req;
+	}
 	
 
 	
