@@ -179,6 +179,16 @@ public class TaskFragment extends ListFragment {
 			taskTimeView.setText(values.get(position).getTime());
 			taskGroupView.setText(values.get(position).getGroup());
 
+			//Boolean isLeader = DataContainer.getFullLeaderNames(groupName).contains(name);
+			//Boolean isLeader = name.startsWith("M");
+			Boolean isLeader = true;
+			ImageView leaderIcon = (ImageView) view.findViewById(R.id.star);
+			leaderIcon.setVisibility(isLeader ? View.VISIBLE : View.INVISIBLE);
+			
+			
+			
+			
+			
 			/*
 			 * Typeface tf = Typeface.defaultFromStyle(Typeface.ITALIC);
 			 * taskTimeView.setTypeface(tf);

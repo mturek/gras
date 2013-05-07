@@ -5,6 +5,7 @@ import java.util.Collections;
 
 public class DataContainer {
 
+	public static String username;
 	static ArrayList<User> users;
 	static ArrayList<TaskProto> taskprotos;
 	static ArrayList<Task> tasks;
@@ -16,7 +17,7 @@ public class DataContainer {
 		tasks = new ArrayList<Task>();
 		
 		groups = new ArrayList<Group> ();
-		String[] groupNames = {"No6", "SH", "21W789", "Life"};
+		String[] groupNames = {"No6", "SH", "21W789"};
 		
 		for(String groupName : groupNames) 
 			(new UsersInGroupReq(groupName)).send();
@@ -82,11 +83,20 @@ public class DataContainer {
 	
 	public static boolean userExists(String username){
 		for(int i = 0; i < DataContainer.users.size(); i++){
-			if(DataContainer.users.get(i).getname() == username);
-			return true;
+			if(DataContainer.users.get(i).getname().equals(username))
+				return true;
 		}
 		return false;
 	}
+	
+	public static String getFullnameForUser(String username){
+		for(int i = 0; i < DataContainer.users.size(); i++){
+			if(DataContainer.users.get(i).getname().equals(username))
+				return DataContainer.users.get(i).getFullname();
+		}
+		return null;
+	}
+	
 	public static void recieveGroupInfo(String ginfo, String gname) {
 		System.out.println("groupInfo: " + ginfo);
 		String[] parts1 = ginfo.split("LEADERS:");

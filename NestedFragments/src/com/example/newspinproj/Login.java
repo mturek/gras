@@ -1,5 +1,6 @@
 package com.example.newspinproj;
 
+import Model.DataContainer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class Login extends Activity {
 	        Intent intent = new Intent(Login.this, MainActivity.class);
 	        Bundle bundle = new Bundle();
 	        String username = ((EditText) findViewById(R.id.username)).getText().toString();
+	        DataContainer.username = username;
 	        bundle.putString("uname", username);
 	        intent.putExtra("unamestuff", bundle);
 	        startActivity(intent);

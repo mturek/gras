@@ -110,7 +110,7 @@ public class MainActivity extends FragmentActivity implements
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	
 	@Override
 	public boolean onNavigationItemSelected(int position, long id) {
 		/*

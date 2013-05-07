@@ -131,6 +131,8 @@ public class TaskDetailsActivity extends Activity {
 		
 		
 		ArrayList<String> member = task.getuser();
+		System.out.println("Members: " + member.toString());
+
 		
 		populateBadges(leaders, layout);
 
@@ -147,7 +149,14 @@ public class TaskDetailsActivity extends Activity {
 		populateBadges(member, layout);
 		
 		Button buttonDone = (Button) findViewById(R.id.buttonDone);
-		buttonDone.setText("Click to finish");
+		
+		String username = DataContainer.username;
+		String fullname = DataContainer.getFullnameForUser(username);
+		
+		if(leaders.contains(fullname))
+			buttonDone.setText("Delete task");
+		else
+			buttonDone.setText("Mark finished");
 		
 	}
 
