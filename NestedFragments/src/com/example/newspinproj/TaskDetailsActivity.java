@@ -52,6 +52,12 @@ public class TaskDetailsActivity extends Activity {
 		final TextView time = (TextView) findViewById(R.id.taskDetailsTime);
 		final TextView group = (TextView) findViewById(R.id.taskDetailsGroup);
 
+		String descrip = "";
+		if(taskname.contains("Custom")){
+			String[] namedes = taskname.split(",");
+			taskname = namedes[1];
+			descrip = namedes[2];
+		}
 		name.setText(taskname);
 		time.setText(tasktime);
 		group.setText(taskgroup);
@@ -86,7 +92,8 @@ public class TaskDetailsActivity extends Activity {
 		} else if (s.equals("Feed the pets")) {
 			textView.setText("Give food and water to the pets. Make sure you clean the plates and cups first.");
 		} else {
-			textView.setText("This is a custom activity.");
+			
+			textView.setText(descrip);
 		}
 
 		addListenerOnButton();

@@ -86,6 +86,15 @@ public class URLCreator implements ServerRequestVisitor {
 		HttpInterface.sendreq(req);
 		return req;
 	}
+
+
+
+	@Override
+	public String onSwapRequest(SwapReq sr) {
+		String req = rootURL + "command=swaprequest" + "&utid1=" + sr.utid1 + "&utid2=" + sr.utid2 + "&uname1=" + sr.uname1 + "&uname2=" + sr.uname2;
+		HttpInterface.sendreq(req);
+		return req;
+	}
 	
 
 	

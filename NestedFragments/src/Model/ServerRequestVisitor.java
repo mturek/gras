@@ -10,4 +10,5 @@ public interface ServerRequestVisitor {
 	String onUsersInGroupReq(UsersInGroupReq uig);
 	String onDeleteTask(DeleteTaskReq deleteTaskReq);
 	String onGroupTasksReq(GroupTasksReq grouptasksreq);
+	String onSwapRequest(SwapReq sr);
 }

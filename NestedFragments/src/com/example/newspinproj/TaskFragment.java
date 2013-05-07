@@ -175,7 +175,14 @@ public class TaskFragment extends ListFragment {
 			TextView taskGroupView = (TextView) rowView
 					.findViewById(R.id.taskGroup);
 			ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
-			taskNameView.setText(values.get(position).getname());
+			String fulltaskname = values.get(position).getname();
+			if(fulltaskname.contains("Custom")){
+				String[] tasknameparts = fulltaskname.split(",");
+				taskNameView.setText(tasknameparts[1]);
+			}
+			else{
+				taskNameView.setText(fulltaskname);
+			}
 			taskTimeView.setText(values.get(position).getTime());
 			taskGroupView.setText(values.get(position).getGroup());
 

@@ -11,10 +11,26 @@ public class Task implements Comparable<Task>{
 	String date;
 	String user1;
 	String group;
+	String customdescrip;
 	
 	String[] fields = {"utid", "protoid", "date", "user1",  "group"};
 	ArrayList<String>values = new ArrayList<String>();
 	public Task(Integer utid, String protoid,String date, String user1,  String g1){
+		this.values.add(utid.toString());
+		this.values.add( protoid.toString());
+		this.values.add( date);
+		this.values.add( user1);
+		this.values.add( g1);
+
+		this.utid= utid;
+		this.protoid = protoid;
+		this.date = date;
+		this.user1 = user1;
+		//this.user2 = user2;
+		this.group = g1; 
+	}
+	
+	public Task(Integer utid, String protoid,String date, String user1,  String g1, String customdescrip){
 		this.values.add(utid.toString());
 		this.values.add( protoid.toString());
 		this.values.add( date);

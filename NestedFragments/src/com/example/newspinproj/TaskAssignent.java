@@ -1,5 +1,6 @@
 package com.example.newspinproj;
 
+import Model.DataContainer;
 import Model.Task;
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -108,9 +109,9 @@ public class TaskAssignent extends Activity {
 	            if(checkedId == 6){
 	            	final RelativeLayout layout = (RelativeLayout) findViewById(R.id.taskassign);
 	            	TextView tv1 = new TextView(layout.getContext());
-	            	tv1.setText("Description");
+	            	tv1.setText("Name");
 	            	TextView tv2 = new TextView(layout.getContext());
-	            	tv2.setText("Name");
+	            	tv2.setText("Description");
 	            	EditText et1 = new EditText(layout.getContext());
 	            	EditText et2 = new EditText(layout.getContext());
 	            	TextView timelabel = (TextView) findViewById(R.id.labelDate);
@@ -160,15 +161,31 @@ public class TaskAssignent extends Activity {
 				
 				int selectedId = radioGroup.indexOfChild(findViewById(radioGroup.getCheckedRadioButtonId()));
 				
-				System.out.println("Checked radio: " + selectedId);
-				String[] tasknames = {"Clean-up", "Dish%20duty", "Feed%20the%20pets",
-						"Water%20the%20plants", "Take%20out%20the%20trash", "CUSTOM"};
-				final int spin = 3;
-				Task freshtask = new Task(spin, tasknames[selectedId],
-						datetime, user, group);
+				Task freshtask;
+				if(selectedId == 5){
+					EditText nametext = (EditText) findViewById(8);
+					EditText descriptext = (EditText) findViewById(10);
+					String nt = nametext.getText().toString().replace(" ", "%20");
+					String dt = descriptext.getText().toString().replace(" ", "%20");
+
+					
+					freshtask = new Task(3, "Custom," + nt + "," + dt, datetime, user, group);
+				}
+				else{
+					System.out.println("Checked radio: " + selectedId);
+					String[] tasknames = {"Clean-up", "Dish%20duty", "Feed%20the%20pets",
+							"Water%20the%20plants", "Take%20out%20the%20trash", "CUSTOM"};
+					final int spin = 3;
+					freshtask = new Task(spin, tasknames[selectedId],
+							datetime, user, group);
+				}
+				
 				freshtask.SendToServer();
 				Intent intent = new Intent(TaskAssignent.this,
 						MainActivity.class);
+		        Bundle bundle = new Bundle();
+		        intent.putExtra("unamestuff", bundle);
+		        bundle.putString("uname", DataContainer.username);
 				startActivity(intent);
 
 			}
