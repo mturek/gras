@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import Model.DataContainer;
-import Model.DeleteTaskReq;
 import Model.Task;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class TaskDetailsActivity extends Activity {
@@ -167,25 +167,9 @@ public class TaskDetailsActivity extends Activity {
 			buttonDone.setText("Delete task");
 		else
 			buttonDone.setText("Mark finished");
-
-		buttonDone.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				DeleteTaskReq dtr = new DeleteTaskReq(getUtid());
-				dtr.send();
-				DataContainer.removeTask(getUtid());
-				finish();
-			}
-			
-		});
 		
 	}
 
-	public int getUtid() {
-		return utid;
-	}
-	
 	private void populateBadges(ArrayList<String> people, LinearLayout layout) {
 		// Create a cursor
 		String sortOrder = ContactsContract.Contacts.DISPLAY_NAME
