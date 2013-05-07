@@ -224,4 +224,17 @@ public class DataContainer {
 		
 		return fullnames;
 	}
+	
+	public static ArrayList<String> getLedGroups(String uname){
+		ArrayList<String> gnames = new ArrayList<String>();
+		for( Group group: groups){
+			ArrayList<User> leads = group.getLeaders();
+			for( User leader : leads){
+				if(leader.getname().equals(uname)){
+					gnames.add(leader.getname());
+				}
+			}
+		}
+		return gnames;
+	}
 }

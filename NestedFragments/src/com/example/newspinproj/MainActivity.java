@@ -1,6 +1,7 @@
 package com.example.newspinproj;
 
 import Model.DataContainer;
+import Model.GroupTasksReq;
 import Model.User;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -157,6 +158,17 @@ public class MainActivity extends FragmentActivity implements
 	private void firstData(String uname){
 		User u = new User(uname, "hihi", "hihi", 0);
 		u.getTasks();
+		if(uname.equals("Niki")){
+			GroupTasksReq gtr = new GroupTasksReq("No6");
+			gtr.send();
+			GroupTasksReq gtr2 = new GroupTasksReq("21W789");
+			gtr2.send();
+
+		}
+		else if(uname.equals("Yoana")){
+			GroupTasksReq gtr = new GroupTasksReq("SH");
+			gtr.send();
+		}
 	}
 	
 	private void refreshData() {

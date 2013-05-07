@@ -9,4 +9,5 @@ public interface ServerRequestVisitor {
 	String onTaskFromIDReq(TaskFromIDRequest tfid);
 	String onUsersInGroupReq(UsersInGroupReq uig);
 	String onDeleteTask(DeleteTaskReq deleteTaskReq);
+	String onGroupTasksReq(GroupTasksReq grouptasksreq);
 }
