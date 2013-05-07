@@ -1,5 +1,7 @@
 package com.example.newspinproj;
 
+import java.util.ArrayList;
+
 import Model.DataContainer;
 import Model.Task;
 import android.app.Activity;
@@ -10,7 +12,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,6 +32,11 @@ public class TaskAssignent extends Activity {
 	private String user;
 	private String datetime;
 	private RadioGroup radioGroup;
+	public Activity me;
+
+	public Activity getMe() {
+		return me;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +47,54 @@ public class TaskAssignent extends Activity {
 		String gr = (String) grname.get("group");
 		System.out.println(gr);
 
+		this.me = this;
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		int spinindex = Integer.parseInt(gr);
 
 		final Spinner groupspin = (Spinner) findViewById(R.id.spin);
 		final Spinner peoplespin = (Spinner) findViewById(R.id.spinpeeps);
-		
 
 		groupspin.setSelection(spinindex, false);
+		groupspin.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				if (position != 0) {
+					// System.out.println("Selected group in spinner: " +
+					// (String) groupspin.getSelectedItem());
+					ArrayList<String> members = DataContainer
+							.getFullnames((String) groupspin.getSelectedItem());
+
+					ArrayList<String> membersOnce = new ArrayList<String>();
+					for(int i = 0; i<members.size()/2; i++) {
+						membersOnce.add(members.get(i));
+					}
+					
+					ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+							getMe(), android.R.layout.simple_spinner_item,
+							membersOnce);
+					peoplespin.setAdapter(adapter);
+
+					/*
+					 * ArrayList<String> people = new ArrayList<String>();
+					 * people.add("Niki Edmonds"); people.add("Michael Turek");
+					 * 
+					 * // layout: android.R.layout.simple_spinner_item
+					 */
+				}
+
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
 
 		/*
 		 * TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
@@ -59,7 +107,7 @@ public class TaskAssignent extends Activity {
 		final RadioGroup rg = new RadioGroup(getApplicationContext()); // create
 																		// the
 																		// RadioGroup
-		
+
 		radioGroup = rg;
 		rg.setOrientation(LinearLayout.HORIZONTAL);// or RadioGroup.VERTICAL
 
@@ -69,7 +117,7 @@ public class TaskAssignent extends Activity {
 		int[] statesChecked = new int[] { R.drawable.cleanup_selected,
 				R.drawable.dishes_selected, R.drawable.pet_selected,
 				R.drawable.plants_selected, R.drawable.trash_selected,
-				R.drawable.custom_selected};
+				R.drawable.custom_selected };
 
 		for (int i = 0; i < 6; i++) {
 			rb[i] = new RadioButton(getApplicationContext());
@@ -102,90 +150,111 @@ public class TaskAssignent extends Activity {
 
 		final Button dateButton = (Button) findViewById(R.id.datepick);
 		final Button timeButton = (Button) findViewById(R.id.timepick);
-		
-		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() 
-	    {
-	        public void onCheckedChanged(RadioGroup group, int checkedId) {
-	            if(checkedId == 6){
-	            	final RelativeLayout layout = (RelativeLayout) findViewById(R.id.taskassign);
-	            	TextView tv1 = new TextView(layout.getContext());
-	            	tv1.setText("Name");
-	            	TextView tv2 = new TextView(layout.getContext());
-	            	tv2.setText("Description");
-	            	EditText et1 = new EditText(layout.getContext());
-	            	EditText et2 = new EditText(layout.getContext());
-	            	TextView timelabel = (TextView) findViewById(R.id.labelDate);
-	            	RelativeLayout.LayoutParams lrparam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	            	tv1.setLayoutParams(lrparam);
-	            	tv1.setId(7);
-	            	lrparam.addRule(RelativeLayout.BELOW, R.id.taskPrototypesView);
-	            	layout.addView(tv1);
-	            	
-	            	RelativeLayout.LayoutParams lrparam2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	            	et1.setLayoutParams(lrparam2);
-	            	et1.setId(8);
-	            	lrparam2.addRule(RelativeLayout.BELOW, tv1.getId());
-	            	layout.addView(et1);
-	            	
-	            	RelativeLayout.LayoutParams lrparam3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	            	tv2.setLayoutParams(lrparam3);
-	            	tv2.setId(9);
-	            	lrparam3.addRule(RelativeLayout.BELOW, et1.getId() );
-	            	layout.addView(tv2);
-	            	
-	            	RelativeLayout.LayoutParams lrparam4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	            	et2.setLayoutParams(lrparam4);
-	            	et2.setId(10);
-	            	lrparam4.addRule(RelativeLayout.BELOW, tv2.getId());
-	            	layout.addView(et2);
-	            	
-	            	RelativeLayout.LayoutParams things =  (android.widget.RelativeLayout.LayoutParams) timelabel.getLayoutParams();
-	            	things.addRule(RelativeLayout.BELOW, et2.getId());
-	            	timelabel.setLayoutParams(things);
-	   
-	            	tv1.requestLayout();
 
-	            }
-	        }
-	    });
+		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				System.out.println("In listener: " + checkedId);
+				int selectedId = radioGroup
+						.indexOfChild(findViewById(radioGroup
+								.getCheckedRadioButtonId()));
+
+				if (selectedId == 5) {
+					System.out.println("Correct radio");
+					final RelativeLayout layout = (RelativeLayout) findViewById(R.id.taskassign);
+					TextView tv1 = new TextView(layout.getContext());
+					tv1.setText("Name");
+					TextView tv2 = new TextView(layout.getContext());
+					tv2.setText("Description");
+					EditText et1 = new EditText(layout.getContext());
+					EditText et2 = new EditText(layout.getContext());
+					TextView timelabel = (TextView) findViewById(R.id.labelDate);
+					RelativeLayout.LayoutParams lrparam = new RelativeLayout.LayoutParams(
+							RelativeLayout.LayoutParams.MATCH_PARENT,
+							RelativeLayout.LayoutParams.WRAP_CONTENT);
+					tv1.setLayoutParams(lrparam);
+					tv1.setId(7);
+					lrparam.addRule(RelativeLayout.BELOW,
+							R.id.taskPrototypesView);
+					layout.addView(tv1);
+
+					RelativeLayout.LayoutParams lrparam2 = new RelativeLayout.LayoutParams(
+							RelativeLayout.LayoutParams.MATCH_PARENT,
+							RelativeLayout.LayoutParams.WRAP_CONTENT);
+					et1.setLayoutParams(lrparam2);
+					et1.setId(8);
+					lrparam2.addRule(RelativeLayout.BELOW, tv1.getId());
+					layout.addView(et1);
+
+					RelativeLayout.LayoutParams lrparam3 = new RelativeLayout.LayoutParams(
+							RelativeLayout.LayoutParams.MATCH_PARENT,
+							RelativeLayout.LayoutParams.WRAP_CONTENT);
+					tv2.setLayoutParams(lrparam3);
+					tv2.setId(9);
+					lrparam3.addRule(RelativeLayout.BELOW, et1.getId());
+					layout.addView(tv2);
+
+					RelativeLayout.LayoutParams lrparam4 = new RelativeLayout.LayoutParams(
+							RelativeLayout.LayoutParams.MATCH_PARENT,
+							RelativeLayout.LayoutParams.WRAP_CONTENT);
+					et2.setLayoutParams(lrparam4);
+					et2.setId(10);
+					lrparam4.addRule(RelativeLayout.BELOW, tv2.getId());
+					layout.addView(et2);
+
+					RelativeLayout.LayoutParams things = (android.widget.RelativeLayout.LayoutParams) timelabel
+							.getLayoutParams();
+					things.addRule(RelativeLayout.BELOW, et2.getId());
+					timelabel.setLayoutParams(things);
+
+					tv1.requestLayout();
+
+				}
+			}
+		});
 
 		createButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				group = (String) groupspin.getSelectedItem();
-				user = (String) peoplespin.getSelectedItem();
+				String userFullname = (String) peoplespin.getSelectedItem();
+				user = userFullname.split(" ")[0];
+				
 				String date = dateButton.getText().toString();
 				String time = timeButton.getText().toString();
 				datetime = date + "%20" + time;
-				//int selectedId = radioGroup.getCheckedRadioButtonId();
-				
-				int selectedId = radioGroup.indexOfChild(findViewById(radioGroup.getCheckedRadioButtonId()));
-				
+				// int selectedId = radioGroup.getCheckedRadioButtonId();
+
+				int selectedId = radioGroup
+						.indexOfChild(findViewById(radioGroup
+								.getCheckedRadioButtonId()));
+
 				Task freshtask;
-				if(selectedId == 5){
+				if (selectedId == 5) {
 					EditText nametext = (EditText) findViewById(8);
 					EditText descriptext = (EditText) findViewById(10);
-					String nt = nametext.getText().toString().replace(" ", "%20");
-					String dt = descriptext.getText().toString().replace(" ", "%20");
+					String nt = nametext.getText().toString()
+							.replace(" ", "%20");
+					String dt = descriptext.getText().toString()
+							.replace(" ", "%20");
 
-					
-					freshtask = new Task(3, "Custom," + nt + "," + dt, datetime, user, group);
-				}
-				else{
-					System.out.println("Checked radio: " + selectedId);
-					String[] tasknames = {"Clean-up", "Dish%20duty", "Feed%20the%20pets",
-							"Water%20the%20plants", "Take%20out%20the%20trash", "CUSTOM"};
-					final int spin = 3;
-					freshtask = new Task(spin, tasknames[selectedId],
+					freshtask = new Task(3, "Custom," + nt + "," + dt,
 							datetime, user, group);
+				} else {
+					System.out.println("Checked radio: " + selectedId);
+					String[] tasknames = { "Clean-up", "Dish%20duty",
+							"Feed%20the%20pets", "Water%20the%20plants",
+							"Take%20out%20the%20trash", "CUSTOM" };
+					final int spin = 3;
+					freshtask = new Task(spin, tasknames[selectedId], datetime,
+							user, group);
 				}
-				
+
 				freshtask.SendToServer();
 				Intent intent = new Intent(TaskAssignent.this,
 						MainActivity.class);
-		        Bundle bundle = new Bundle();
-		        intent.putExtra("unamestuff", bundle);
-		        bundle.putString("uname", DataContainer.username);
+				Bundle bundle = new Bundle();
+				intent.putExtra("unamestuff", bundle);
+				bundle.putString("uname", DataContainer.username);
 				startActivity(intent);
 
 			}
