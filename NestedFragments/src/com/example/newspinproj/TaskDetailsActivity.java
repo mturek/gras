@@ -47,7 +47,7 @@ public class TaskDetailsActivity extends Activity {
 		tasktime = (String) bund.get("tasktime");
 		taskgroup = (String) bund.get("taskgroup");
 		people = (String) bund.get("people");
-		int utid = Integer.parseInt((String) bund.getString("utid"));
+		utid = Integer.parseInt((String) bund.getString("utid"));
 		final TextView name = (TextView) findViewById(R.id.taskDetailsName);
 		final TextView time = (TextView) findViewById(R.id.taskDetailsTime);
 		final TextView group = (TextView) findViewById(R.id.taskDetailsGroup);
@@ -117,6 +117,8 @@ public class TaskDetailsActivity extends Activity {
 
 		final LinearLayout layout = (LinearLayout) findViewById(R.id.taskPrototypes);
 
+		System.out.println("The task utid is: " + utid);
+		
 		// ArrayList<String> members = ;
 		Task task = DataContainer.taskbyutid(utid);
 		
@@ -129,6 +131,7 @@ public class TaskDetailsActivity extends Activity {
 		
 		
 		ArrayList<String> member = task.getuser();
+		
 		populateBadges(leaders, layout);
 
 		View verticalLine = new View(getApplicationContext());

@@ -73,8 +73,8 @@ public class DataContainer {
 	
 	public static Task taskbyutid(int utid){
 		for(Task t : tasks){
-			if(t.utid == utid);
-			return t;
+			if(t.utid == utid)
+				return t;
 		}
 		return null;
 		
