@@ -68,6 +68,15 @@ public class URLCreator implements ServerRequestVisitor {
 		HttpInterface.sendreq(req);
 		return req;
 	}
+
+
+
+	@Override
+	public String onDeleteTask(DeleteTaskReq dtr) {
+		String req = rootURL + "command=deletetask" + "&utid" +  dtr.utid;
+		HttpInterface.sendreq(req);
+		return req;
+	}
 	
 
 	

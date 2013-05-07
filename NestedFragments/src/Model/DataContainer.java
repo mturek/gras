@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DataContainer {
 
@@ -67,8 +68,7 @@ public class DataContainer {
 			} else {
 			}
 		}
-
-		System.out.println(tasks.size());
+		DataContainer.sortTasks();
 	}
 	
 	public static boolean userExists(String username){
@@ -188,6 +188,10 @@ public class DataContainer {
 		}
 		
 		return fullnames;
+	}
+	
+	public static void sortTasks(){
+		Collections.sort(DataContainer.tasks);
 	}
 	
 	public static ArrayList<String> getFullLeaderNames(String groupName) {

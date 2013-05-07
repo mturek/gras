@@ -8,4 +8,5 @@ public interface ServerRequestVisitor {
 	String onUserFromNewNameReq(UserFromUnameReq ufnn);
 	String onTaskFromIDReq(TaskFromIDRequest tfid);
 	String onUsersInGroupReq(UsersInGroupReq uig);
+	String onDeleteTask(DeleteTaskReq deleteTaskReq);
 }

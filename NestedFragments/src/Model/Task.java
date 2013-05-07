@@ -75,6 +75,11 @@ public class Task implements Comparable<Task>{
 		return date;
 		
 	}
+	
+	public void delete(){
+		DeleteTaskReq req = new DeleteTaskReq(this.utid);
+		req.send();
+	}
 
 	public String getunfilteredunames(){
 		return user1;
@@ -85,22 +90,31 @@ public class Task implements Comparable<Task>{
 
 	@Override
 	public int compareTo(Task another) {
-		int bigger = 0;
 		String[] datetime1 = this.date.split(" ");
 		String[] date1 = datetime1[0].split("\\/");
+		String[] time1 = datetime1[1].split(":");
 		
 		String[] datetime2 = this.date.split(" ");
-		String[] date2 = datetime1[0].split("\\/");
+		String[] date2 = datetime2[0].split("\\/");
+		String[] time2 = datetime2[1].split(":");
+
 		
-		if(date1[2] != date2[2]){
+		if(!date1[0].equals(date2[0])){
 			return (Integer.parseInt(date1[2]) < Integer.parseInt(date2[2]) ? -1 : 1);
 		}
-		else if(date1[1] != date2[1]){
+		else if(!date1[1].equals(date2[1])){
 			return (Integer.parseInt(date1[1]) < Integer.parseInt(date2[1]) ? -1 : 1);
 		}
-		else if(date1[1] != date2[1]){
+		else if(!date1[2].equals(time2[2])){
 			return (Integer.parseInt(date1[0]) < Integer.parseInt(date2[0]) ? -1 : 1);
 		}
+		else if(!time1[0].equals(time2[0])){
+			return (Integer.parseInt(time1[1]) < Integer.parseInt(time2[1]) ? -1 : 1);
+		}
+		else if(!time1[1].equals(time2[1])){
+			return (Integer.parseInt(time1[0]) < Integer.parseInt(time2[0]) ? -1 : 1);
+		}
+		
 		return 0;
 	}
 }
