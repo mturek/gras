@@ -48,7 +48,7 @@ public class MainActivity extends FragmentActivity implements
 		
 
 		try {
-			Thread.sleep(1500);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,8 +69,8 @@ public class MainActivity extends FragmentActivity implements
 								getString(R.string.title_section4),
 								getString(R.string.title_section5),
 								getString(R.string.title_section6),
-								getString(R.string.title_section7), 
-								getString(R.string.title_section8),}), this);
+								getString(R.string.title_section7) 
+								}), this);
 	}
 
 	/**
@@ -96,12 +96,13 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
+	/*
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		// Serialize the current dropdown position.
 		outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, getActionBar()
 				.getSelectedNavigationIndex());
-	}
+	}*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -122,7 +123,7 @@ public class MainActivity extends FragmentActivity implements
 		 * .replace(R.id.container, fragment).commit(); return true;
 		 */
 		curgroup = "" + position;
-		String[] groups = new String[] {"All groups", "No6", "SH", "789", "Life"};
+		String[] groups = new String[] {"All groups", "No6", "SH", "21W789"};
 		tabFragment.changeData(groups[position]);
 		return true;
 	}

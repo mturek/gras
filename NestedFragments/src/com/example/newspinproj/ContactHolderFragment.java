@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 public class ContactHolderFragment extends Fragment {
 	private View view = null;
+	private String groupName = "All groups";
 
 	@Override
 	public void onStart() {
@@ -19,7 +20,11 @@ public class ContactHolderFragment extends Fragment {
 		// configuration changes for example
 		// setRetainInstance(true);
 		
-		Fragment newFragment = new TaskFragment();
+		Fragment newFragment = new ContactsFragment();
+		
+		Bundle args = new Bundle();
+		args.putString("group", groupName);
+		newFragment.setArguments(args);
 		
 		//Bundle args = new Bundle();
 		//args.putString("date", ""+dayOfMonth+"/"+(month+1)+"/"+year);
@@ -30,20 +35,32 @@ public class ContactHolderFragment extends Fragment {
 		// Replace whatever is in the fragment_container view with this fragment,
 		// and add the transaction to the back stack so the user can navigate back
 		//transaction.remove(findFragmentById(R.id.taskFragment));
-		transaction.add(R.id.contactsFragmentMain, newFragment);
-		//transaction.addToBackStack(null);
+		transaction.replace(R.id.contactsFragmentMain, newFragment);
+		
+		transaction.addToBackStack(null);
 
 		// Commit the transaction
 		transaction.commit();
+		//transaction.commitAllowingStateLoss();
 	}
 
+	/*@Override
+	public void onSaveInstanceState(Bundle outState) {
+	    //No call for super(). Bug on API Level > 11.
+	}*/
+	
 	public void changeData(String data) {
 		Fragment newFragment = new ContactsFragment();
+		
+		groupName=data;
 		
 		Bundle args = new Bundle();
 		args.putString("group", data);
 		newFragment.setArguments(args);
 
+		if(newFragment == null)
+			System.out.println("No contacts fragment created");
+		
 		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 		
 		transaction.replace(R.id.contactsFragmentMain, newFragment);
@@ -53,6 +70,8 @@ public class ContactHolderFragment extends Fragment {
 
 		// Commit the transaction
 		transaction.commit();
+		//transaction.commitAllowingStateLoss();
+
 	}
 	
 	@Override

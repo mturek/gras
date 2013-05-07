@@ -127,7 +127,7 @@ public class TaskDetailsActivity extends Activity {
 		layoutParams.rightMargin = 10;
 		verticalLine.setLayoutParams(layoutParams);
 		
-		view.setBackgroundColor(17170432); //darker_gray
+		verticalLine.setBackgroundColor(0xFF060000); //darker_gray 0x01060000 17170432
 		//view.setBackgroundResource(R.color.darker_gray);
 		
 		layout.addView(verticalLine);

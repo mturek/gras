@@ -21,17 +21,19 @@ public class TaskHolderFragment extends Fragment {
 		
 		Fragment newFragment = new TaskFragment();
 		
-		//Bundle args = new Bundle();
+		Bundle args = new Bundle();
 		//args.putString("date", ""+dayOfMonth+"/"+(month+1)+"/"+year);
-		//newFragment.setArguments(args);
+		args.putString("group", "All groups");
+		newFragment.setArguments(args);
 
 		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 
 		// Replace whatever is in the fragment_container view with this fragment,
 		// and add the transaction to the back stack so the user can navigate back
 		//transaction.remove(findFragmentById(R.id.taskFragment));
-		transaction.add(R.id.taskFragmentMain, newFragment);
-		//transaction.addToBackStack(null);
+		transaction.replace(R.id.taskFragmentMain, newFragment); // changed from add
+		
+		transaction.addToBackStack(null);
 
 		// Commit the transaction
 		transaction.commit();
@@ -53,8 +55,16 @@ public class TaskHolderFragment extends Fragment {
 		transaction.addToBackStack(null);
 
 		// Commit the transaction
+		//transaction.commit();
 		transaction.commit();
+
 	}
+	
+	/*
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+	    //No call for super(). Bug on API Level > 11.
+	}*/
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

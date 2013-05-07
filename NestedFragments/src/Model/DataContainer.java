@@ -119,7 +119,7 @@ public class DataContainer {
 			}
 		}
 		
-		Group newgroup = new Group(gname, groupusers, groupleaders);
+		Group newgroup = new Group(gname, groupleaders, groupusers);
 		DataContainer.groups.add(newgroup);
 		
 	}

@@ -15,7 +15,7 @@
       <string name="title_section4">All groups</string>
     <string name="title_section5">No6</string>
     <string name="title_section6">SH</string>
-    <string name="title_section7">789</string>
+    <string name="title_section7">21W789</string>
     <string name="title_section8">Life</string>
     <string name="hello_world">Hello world!</string>
     <string name="alttext_dishes">Dishes picture</string>
@@ -48,11 +48,10 @@
     <string name="labelGroup">Group</string>
     
      <string-array name="groups_array">
-         <item>Select group</item>
+        <item>Select group</item>
         <item>No6</item>
         <item>SH</item>
         <item>21W789</item>
-        <item>Life</item>
     </string-array>
     
      <string-array name="people_array">

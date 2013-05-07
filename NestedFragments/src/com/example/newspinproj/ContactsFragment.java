@@ -27,11 +27,11 @@ public class ContactsFragment extends ListFragment {
 		//	"Yoana Gyurova", "Android" };
 	private String groupName;
 
-	@Override
+	/*@Override
 	public void onStart() {
 		super.onStart();
 		
-	}
+	}*/
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,8 @@ public class ContactsFragment extends ListFragment {
 				copy = DataContainer.getFullnames(group);
 				groupName = group;
 			} else {
-				copy = new ArrayList<String>();
 				groupName = "All groups";
+				copy = DataContainer.getFullnames(groupName);
 			}
 		}
 
@@ -120,12 +120,17 @@ public class ContactsFragment extends ListFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		      Bundle savedInstanceState) {
 		//if (true || view == null) 
-		if (view == null)
+		if (true || view == null)
 			view = inflater.inflate(R.layout.activity_contacts, container, false);
 		
 		
 		return view;
 	}
+	
+	/*@Override
+	public void onSaveInstanceState(Bundle outState) {
+	    //No call for super(). Bug on API Level > 11.
+	}*/
 	
 	@Override
 	public void onDestroyView() {
@@ -189,6 +194,7 @@ public class ContactsFragment extends ListFragment {
 			tv1.setText(name);
 			tv2.setText(phoneNumber);
 		}
+	
 
 		@Override
 		public View newView(Context context, Cursor cursor, ViewGroup parent) {

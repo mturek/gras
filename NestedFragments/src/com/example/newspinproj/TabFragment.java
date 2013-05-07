@@ -43,6 +43,7 @@ public class TabFragment extends Fragment {
 		
 		return view;
 	}
+	
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -56,8 +57,6 @@ public class TabFragment extends Fragment {
 		mViewPager = (ViewPager) getView().findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		mViewPager.setCurrentItem(1);
-		
-		
 		
 	}
 
@@ -78,6 +77,12 @@ public class TabFragment extends Fragment {
 		
 		super.onDestroyView();
 	}
+	
+	/*
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+	    //No call for super(). Bug on API Level > 11.
+	}*/
 	
 	public void changeData(String data) {
 		//Toast.makeText(this.getActivity(), "Group"+data+"Group", Toast.LENGTH_SHORT).show();
@@ -128,7 +133,7 @@ public class TabFragment extends Fragment {
 			
 			Bundle args = new Bundle();
 			args.putString("group", data);
-			taskFragment.setArguments(args);	
+			taskFragment.setArguments(args);
 			
 			
 			 //notifyDataSetChanged();
@@ -136,6 +141,7 @@ public class TabFragment extends Fragment {
 			*/
 			((TaskHolderFragment) taskHolderFragment).changeData(data);
 			((ContactHolderFragment) contactHolderFragment).changeData(data);
+			//((CalendarFragment) calendarFragment).changeData(data);
 		}
 		
 		 /**
