@@ -106,31 +106,23 @@ public class Task implements Comparable<Task>{
 
 				if(date1[0].equals(date2[0])){
 						if(time1[0].equals(time2[0])){
-							System.out.println(date1[0]);
-							System.out.println(date2[0]);
 
 							if(time1[1].equals(time2[1])){
-								System.out.println("no diff!!");
 								return 0;
 							}
-							System.out.println("diff min");
 
 							return (Integer.parseInt(time1[1]) < Integer.parseInt(time2[1]) ? -1 : 1);
 						}
-						System.out.println("diff hour");
 
 						return (Integer.parseInt(time1[0]) < Integer.parseInt(time2[0]) ? -1 : 1);
 					
 				}
-				System.out.println("diff day");
 
 				return (Integer.parseInt(date1[0]) < Integer.parseInt(date2[0]) ? -1 : 1);
 			}
-			System.out.println("diff month");
 
 			return (Integer.parseInt(date1[1]) < Integer.parseInt(date2[1]) ? -1 : 1);
 		}
-		System.out.println("diff year");
 
 		return (Integer.parseInt(date1[2]) < Integer.parseInt(date2[2]) ? -1 : 1);
 

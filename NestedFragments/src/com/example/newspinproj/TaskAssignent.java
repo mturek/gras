@@ -110,15 +110,38 @@ public class TaskAssignent extends Activity {
 	            	TextView tv1 = new TextView(layout.getContext());
 	            	tv1.setText("Description");
 	            	TextView tv2 = new TextView(layout.getContext());
-	            	tv1.setText("Name");
+	            	tv2.setText("Name");
 	            	EditText et1 = new EditText(layout.getContext());
 	            	EditText et2 = new EditText(layout.getContext());
-	            	
+	            	TextView timelabel = (TextView) findViewById(R.id.labelDate);
 	            	RelativeLayout.LayoutParams lrparam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-	            	//lrparam.alignWithParent = true;
 	            	tv1.setLayoutParams(lrparam);
-	            	//tv1.setTop(RelativeLayout.ALIGN_PARENT_BOTTOM);
+	            	tv1.setId(7);
+	            	lrparam.addRule(RelativeLayout.BELOW, R.id.taskPrototypesView);
 	            	layout.addView(tv1);
+	            	
+	            	RelativeLayout.LayoutParams lrparam2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	            	et1.setLayoutParams(lrparam2);
+	            	et1.setId(8);
+	            	lrparam2.addRule(RelativeLayout.BELOW, tv1.getId());
+	            	layout.addView(et1);
+	            	
+	            	RelativeLayout.LayoutParams lrparam3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	            	tv2.setLayoutParams(lrparam3);
+	            	tv2.setId(9);
+	            	lrparam3.addRule(RelativeLayout.BELOW, et1.getId() );
+	            	layout.addView(tv2);
+	            	
+	            	RelativeLayout.LayoutParams lrparam4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	            	et2.setLayoutParams(lrparam4);
+	            	et2.setId(10);
+	            	lrparam4.addRule(RelativeLayout.BELOW, tv2.getId());
+	            	layout.addView(et2);
+	            	
+	            	RelativeLayout.LayoutParams things =  (android.widget.RelativeLayout.LayoutParams) timelabel.getLayoutParams();
+	            	things.addRule(RelativeLayout.BELOW, et2.getId());
+	            	timelabel.setLayoutParams(things);
+	   
 	            	tv1.requestLayout();
 
 	            }
