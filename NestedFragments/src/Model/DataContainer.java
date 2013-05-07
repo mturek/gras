@@ -194,6 +194,14 @@ public class DataContainer {
 		}
 		return stuffs;
 	}
+	
+	public static void removeSwap(int utid){
+		for(Swap swap : swaps){
+			if(swap.utid == utid){
+				swaps.remove(swap);
+			}
+		}
+	}
 
 	public static ArrayList<Task> getTasksByGroup(String group) {
 		ArrayList<Task> ret = new ArrayList<Task>();
