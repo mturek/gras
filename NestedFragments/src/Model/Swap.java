@@ -11,7 +11,7 @@ public class Swap {
 		this.message = message;
 		this.uname1 = uname1;
 		this.uname2 = uname2;
-		this.utid = utid;
+		this.utid = utid;  
 	}
 	
 	public String getmessage(){
